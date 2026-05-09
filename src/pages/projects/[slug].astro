@@ -1,0 +1,150 @@
+---
+// Individual project page
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+type Props = {
+  project: CollectionEntry<'projects'>;
+};
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<BaseLayout 
+  title={project.data.title}
+  description={project.data.description}
+>
+  <article class="section">
+    <div class="container">
+      <div class="project-header">
+        <div class="flex items-center justify-between flex-wrap gap-md">
+          <div>
+            <h1>{project.data.title}</h1>
+            <div class="status">
+              <span class={`status-dot ${project.data.status}`}></span>
+              <span style="text-transform: capitalize;">{project.data.status}</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            {project.data.repository && (
+              <a 
+                href={project.data.repository} 
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Repository
+              </a>
+            )}
+            {project.data.demo && (
+              <a 
+                href={project.data.demo} 
+                class="btn btn-outline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Live Demo
+              </a>
+            )}
+          </div>
+        </div>
+        
+        <p class="lead">{project.data.description}</p>
+        
+        <div class="project-meta">
+          <div class="meta-section">
+            <h3>Technologies</h3>
+            <div class="tags">
+              {project.data.technologies.map((tech) => (
+                <span class="tag tag-primary">{tech}</span>
+              ))}
+            </div>
+          </div>
+          
+          <div class="meta-section">
+            <h3>Tags</h3>
+            <div class="tags">
+              {project.data.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="content-wrapper project-content">
+        <Content />
+      </div>
+      
+      {project.data.caseStudy && (
+        <div class="card" style="margin-top: var(--space-2xl);">
+          <h3>Related Case Study</h3>
+          <p>Read the detailed case study for this project:</p>
+          <a href={`/case-studies/${project.data.caseStudy}`} class="btn btn-primary">
+            View Case Study
+          </a>
+        </div>
+      )}
+      
+      <div style="margin-top: var(--space-2xl);">
+        <a href="/projects" class="btn btn-outline">← Back to Projects</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../../styles/variables';
+  
+  .project-header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+    border-bottom: 1px solid var(--color-border);
+    
+    h1 {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .lead {
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+  }
+  
+  .project-meta {
+    display: grid;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+    
+    @include media-md {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+    }
+  }
+  
+  .meta-section {
+    h3 {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-sm);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+  
+  .project-content {
+    :global(h2) {
+      margin-top: var(--space-2xl);
+    }
+  }
+</style>

@@ -1,0 +1,147 @@
+---
+// Projects listing page
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => {
+  // Sort by order if specified, then by date
+  if (a.data.order !== undefined && b.data.order !== undefined) {
+    return a.data.order - b.data.order;
+  }
+  return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+});
+
+// Group by status
+const activeProjects = sortedProjects.filter(p => p.data.status === 'active' || p.data.status === 'in-progress');
+const completedProjects = sortedProjects.filter(p => p.data.status === 'completed');
+const archivedProjects = sortedProjects.filter(p => p.data.status === 'archived');
+---
+
+<BaseLayout 
+  title="Projects" 
+  description="Healthcare interoperability projects including FHIR APIs, MyHealth@EU implementations, and educational tools"
+>
+  <div class="section">
+    <div class="container">
+      <h1>Projects</h1>
+      <p class="lead">
+        Healthcare interoperability implementations, APIs, educational tools, 
+        and standards-based solutions
+      </p>
+      
+      {activeProjects.length > 0 && (
+        <section class="project-section">
+          <h2>Active Projects</h2>
+          <div class="grid grid-auto-fit">
+            {activeProjects.map((project) => (
+              <a href={`/projects/${project.slug}`} class="card-link">
+                <article class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">{project.data.title}</h3>
+                    <div class="status">
+                      <span class={`status-dot ${project.data.status}`}></span>
+                      <span>{project.data.status}</span>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <p>{project.data.description}</p>
+                    <div class="tags">
+                      {project.data.tags.map((tag) => (
+                        <span class="tag">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="flex items-center justify-between">
+                      <span>View project →</span>
+                      {project.data.caseStudy && (
+                        <span class="tag tag-accent">Case Study</span>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+      
+      {completedProjects.length > 0 && (
+        <section class="project-section">
+          <h2>Completed Projects</h2>
+          <div class="grid grid-auto-fit">
+            {completedProjects.map((project) => (
+              <a href={`/projects/${project.slug}`} class="card-link">
+                <article class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">{project.data.title}</h3>
+                    <div class="status">
+                      <span class={`status-dot ${project.data.status}`}></span>
+                      <span>{project.data.status}</span>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <p>{project.data.description}</p>
+                    <div class="tags">
+                      {project.data.tags.map((tag) => (
+                        <span class="tag">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="flex items-center justify-between">
+                      <span>View project →</span>
+                      {project.data.caseStudy && (
+                        <span class="tag tag-accent">Case Study</span>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+      
+      {archivedProjects.length > 0 && (
+        <section class="project-section">
+          <h2>Archived Projects</h2>
+          <details class="archived-details">
+            <summary style="cursor: pointer; padding: var(--space-md); background: var(--color-background-alt); border-radius: var(--border-radius-md);">
+              Show archived projects ({archivedProjects.length})
+            </summary>
+            <div class="grid grid-auto-fit" style="margin-top: var(--space-lg);">
+              {archivedProjects.map((project) => (
+                <a href={`/projects/${project.slug}`} class="card-link">
+                  <article class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">{project.data.title}</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>{project.data.description}</p>
+                    </div>
+                  </article>
+                </a>
+              ))}
+            </div>
+          </details>
+        </section>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../styles/variables';
+  
+  .project-section {
+    margin-bottom: var(--space-3xl);
+    
+    h2 {
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-md);
+      border-bottom: 2px solid var(--color-border);
+    }
+  }
+</style>

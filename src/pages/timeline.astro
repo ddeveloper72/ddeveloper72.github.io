@@ -1,0 +1,247 @@
+---
+// Timeline page
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allTimelineEntries = await getCollection('timeline');
+
+// Sort by start date (most recent first)
+const sortedEntries = allTimelineEntries.sort((a, b) => {
+  return b.data.startDate.getTime() - a.data.startDate.getTime();
+});
+
+// Function to format date
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+// Function to check if currently employed
+function isCurrent(entry: typeof sortedEntries[0]): boolean {
+  return entry.data.endDate === undefined;
+}
+---
+
+<BaseLayout 
+  title="Timeline" 
+  description="Professional timeline including roles, responsibilities, and key achievements in healthcare interoperability"
+>
+  <div class="section">
+    <div class="container">
+      <h1>Professional Timeline</h1>
+      <p class="lead">
+        My journey in healthcare interoperability, technical architecture, 
+        and software development
+      </p>
+      
+      <div class="timeline">
+        {sortedEntries.map((entry, index) => (
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-dot" class:list={[
+                { current: isCurrent(entry) }
+              ]}>
+              </div>
+              {index < sortedEntries.length - 1 && (
+                <div class="timeline-line"></div>
+              )}
+            </div>
+            
+            <div class="timeline-content">
+              <div class="timeline-card card">
+                <div class="timeline-date">
+                  {formatDate(entry.data.startDate)} — {isCurrent(entry) ? 'Present' : formatDate(entry.data.endDate!)}
+                  {entry.data.location && (
+                    <span class="timeline-location"> • {entry.data.location}</span>
+                  )}
+                </div>
+                
+                <h2 class="timeline-title">{entry.data.title}</h2>
+                <h3 class="timeline-organization">{entry.data.organization}</h3>
+                
+                <p class="timeline-description">{entry.data.description}</p>
+                
+                {entry.data.responsibilities && entry.data.responsibilities.length > 0 && (
+                  <div class="timeline-section">
+                    <h4>Key Responsibilities</h4>
+                    <ul>
+                      {entry.data.responsibilities.map((resp) => (
+                        <li>{resp}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                {entry.data.achievements && entry.data.achievements.length > 0 && (
+                  <div class="timeline-section">
+                    <h4>Notable Achievements</h4>
+                    <ul>
+                      {entry.data.achievements.map((achievement) => (
+                        <li>{achievement}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                {entry.data.technologies && entry.data.technologies.length > 0 && (
+                  <div class="timeline-technologies">
+                    <div class="tags">
+                      {entry.data.technologies.map((tech) => (
+                        <span class="tag">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../styles/variables';
+  
+  .timeline {
+    margin-top: var(--space-2xl);
+    position: relative;
+  }
+  
+  .timeline-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    
+    @include media-md {
+      gap: var(--space-xl);
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 0.5rem;
+  }
+  
+  .timeline-dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    border: 3px solid var(--color-background);
+    box-shadow: 0 0 0 2px var(--color-primary);
+    z-index: 1;
+    flex-shrink: 0;
+    
+    &.current {
+      width: 1.25rem;
+      height: 1.25rem;
+      background-color: var(--color-accent);
+      box-shadow: 0 0 0 3px var(--color-accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 3px var(--color-accent);
+    }
+    50% {
+      box-shadow: 0 0 0 6px rgba(0, 168, 150, 0.3);
+    }
+  }
+  
+  .timeline-line {
+    width: 2px;
+    flex-grow: 1;
+    background-color: var(--color-border);
+    margin: var(--space-xs) 0;
+  }
+  
+  .timeline-content {
+    padding-bottom: var(--space-lg);
+  }
+  
+  .timeline-card {
+    padding: var(--space-lg);
+    
+    @include media-md {
+      padding: var(--space-xl);
+    }
+  }
+  
+  .timeline-date {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .timeline-location {
+    color: var(--color-text-muted);
+  }
+  
+  .timeline-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+    
+    @include media-md {
+      font-size: var(--font-size-2xl);
+    }
+  }
+  
+  .timeline-organization {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+  }
+  
+  .timeline-description {
+    color: var(--color-text-light);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .timeline-section {
+    margin-bottom: var(--space-lg);
+    
+    h4 {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-sm);
+      color: var(--color-text);
+    }
+    
+    ul {
+      margin: 0;
+      padding-left: var(--space-lg);
+      
+      li {
+        margin-bottom: var(--space-xs);
+        color: var(--color-text-light);
+        line-height: var(--line-height-relaxed);
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  
+  .timeline-technologies {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border-light);
+  }
+</style>

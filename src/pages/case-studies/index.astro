@@ -1,0 +1,57 @@
+---
+// Case studies listing page
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allCaseStudies = await getCollection('case-studies');
+const sortedCaseStudies = allCaseStudies.sort((a, b) => {
+  if (a.data.order !== undefined && b.data.order !== undefined) {
+    return a.data.order - b.data.order;
+  }
+  return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+});
+---
+
+<BaseLayout 
+  title="Case Studies" 
+  description="Detailed explorations of healthcare interoperability challenges, solutions, and technical implementations"
+>
+  <div class="section">
+    <div class="container">
+      <h1>Case Studies</h1>
+      <p class="lead">
+        Detailed explorations of healthcare interoperability challenges, 
+        technical approaches, and lessons learned
+      </p>
+      
+      <div class="grid grid-2">
+        {sortedCaseStudies.map((study) => (
+          <a href={`/case-studies/${study.slug}`} class="card-link">
+            <article class="card">
+              <div class="card-header">
+                <h2 class="card-title">{study.data.title}</h2>
+              </div>
+              <div class="card-body">
+                <p><strong>Problem:</strong> {study.data.problem}</p>
+                <p class="text-muted" style="margin-top: var(--space-md);">
+                  {study.data.description}
+                </p>
+                <div class="tags" style="margin-top: var(--space-md);">
+                  {study.data.technologies.slice(0, 4).map((tech) => (
+                    <span class="tag tag-primary">{tech}</span>
+                  ))}
+                  {study.data.technologies.length > 4 && (
+                    <span class="tag">+{study.data.technologies.length - 4} more</span>
+                  )}
+                </div>
+              </div>
+              <div class="card-footer">
+                <span>Read case study →</span>
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

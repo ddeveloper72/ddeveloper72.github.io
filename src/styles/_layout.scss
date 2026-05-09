@@ -1,0 +1,141 @@
+// Layout utilities and containers
+
+.container {
+  width: 100%;
+  max-width: var(--max-width-container);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  
+  @include media-md {
+    padding: 0 var(--space-lg);
+  }
+  
+  @include media-lg {
+    padding: 0 var(--space-xl);
+  }
+}
+
+.content-wrapper {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}
+
+// Section spacing
+.section {
+  padding: var(--space-2xl) 0;
+  
+  @include media-md {
+    padding: var(--space-3xl) 0;
+  }
+}
+
+.section-header {
+  margin-bottom: var(--space-xl);
+  
+  @include media-md {
+    margin-bottom: var(--space-2xl);
+  }
+}
+
+// Grid layouts
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+  
+  @include media-md {
+    gap: var(--space-xl);
+  }
+}
+
+.grid-2 {
+  @include media-md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid-3 {
+  @include media-md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include media-lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid-auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+// Flex utilities
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-sm {
+  gap: var(--space-sm);
+}
+
+.gap-md {
+  gap: var(--space-md);
+}
+
+.gap-lg {
+  gap: var(--space-lg);
+}
+
+// Spacing utilities
+.mt-0 { margin-top: 0 !important; }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+.mb-2xl { margin-bottom: var(--space-2xl); }
+
+// Visibility utilities
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Skip link for accessibility
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  padding: var(--space-md);
+  background-color: var(--color-primary);
+  color: white;
+  z-index: 100;
+  
+  &:focus {
+    top: 0;
+  }
+}

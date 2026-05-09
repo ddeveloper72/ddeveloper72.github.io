@@ -1,0 +1,188 @@
+---
+// Home page
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get featured content
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter(project => project.data.featured)
+  .sort((a, b) => (a.data.order || 999) - (b.data.order || 999))
+  .slice(0, 3);
+
+const allCaseStudies = await getCollection('case-studies');
+const featuredCaseStudies = allCaseStudies
+  .filter(study => study.data.featured)
+  .sort((a, b) => (a.data.order || 999) - (b.data.order || 999))
+  .slice(0, 2);
+---
+
+<BaseLayout title="Home">
+  <div class="hero section">
+    <div class="container">
+      <h1 class="hero-title">Duncan Falconer</h1>
+      <p class="hero-subtitle lead">
+        Technical Architect specializing in healthcare interoperability, 
+        HL7 FHIR, and standards-based healthcare solutions
+      </p>
+      <p class="hero-description">
+        I design, build, and explain interoperable healthcare systems using modern 
+        APIs, international standards, and practical delivery approaches.
+      </p>
+      <div class="btn-group">
+        <a href="/projects" class="btn btn-primary">View Projects</a>
+        <a href="/about" class="btn btn-outline">About Me</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <p class="lead">
+          Recent work in healthcare interoperability and technical architecture
+        </p>
+      </div>
+      
+      <div class="grid grid-auto-fit">
+        {featuredProjects.map((project) => (
+          <a href={`/projects/${project.slug}`} class="card-link">
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">{project.data.title}</h3>
+                <div class="status">
+                  <span class={`status-dot ${project.data.status}`}></span>
+                  <span>{project.data.status}</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <p>{project.data.description}</p>
+                <div class="tags">
+                  {project.data.tags.slice(0, 3).map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+      
+      <div style="text-align: center; margin-top: var(--space-xl);">
+        <a href="/projects" class="btn btn-outline">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background-color: var(--color-background-alt);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Expertise</h2>
+      </div>
+      
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Healthcare Interoperability</h3>
+          <p>
+            Deep expertise in HL7 FHIR, CDA, and cross-border healthcare data exchange. 
+            Experience implementing MyHealth@EU and international patient summary standards.
+          </p>
+        </div>
+        
+        <div class="card">
+          <h3>API Architecture</h3>
+          <p>
+            Design and delivery of RESTful APIs, integration platforms, and developer 
+            experiences. Practical application of API governance and documentation.
+          </p>
+        </div>
+        
+        <div class="card">
+          <h3>Technical Delivery</h3>
+          <p>
+            Python, Django, Flask, Angular, and TypeScript. Building healthcare 
+            applications from requirements through to production deployment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {featuredCaseStudies.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Case Studies</h2>
+          <p class="lead">
+            Detailed explorations of technical challenges and solutions
+          </p>
+        </div>
+        
+        <div class="grid grid-2">
+          {featuredCaseStudies.map((study) => (
+            <a href={`/case-studies/${study.slug}`} class="card-link">
+              <article class="card">
+                <div class="card-header">
+                  <h3 class="card-title">{study.data.title}</h3>
+                </div>
+                <div class="card-body">
+                  <p><strong>Challenge:</strong> {study.data.problem}</p>
+                  <div class="tags">
+                    {study.data.technologies.slice(0, 4).map((tech) => (
+                      <span class="tag tag-primary">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+        
+        <div style="text-align: center; margin-top: var(--space-xl);">
+          <a href="/case-studies" class="btn btn-outline">View All Case Studies</a>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style lang="scss">
+  @import '../styles/variables';
+  
+  .hero {
+    padding: var(--space-2xl) 0;
+    
+    @include media-md {
+      padding: var(--space-3xl) 0 4rem;
+    }
+  }
+  
+  .hero-title {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--space-md);
+    
+    @include media-md {
+      font-size: 3rem;
+    }
+  }
+  
+  .hero-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-lg);
+    max-width: 800px;
+    
+    @include media-md {
+      font-size: var(--font-size-2xl);
+    }
+  }
+  
+  .hero-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-light);
+    margin-bottom: var(--space-xl);
+    max-width: 700px;
+    line-height: var(--line-height-relaxed);
+  }
+</style>

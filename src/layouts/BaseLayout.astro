@@ -1,0 +1,53 @@
+---
+// Base layout component
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.scss';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+}
+
+const { 
+  title, 
+  description = 'Duncan Falconer - Technical Architect specializing in healthcare interoperability, HL7 FHIR, and standards-based healthcare solutions.',
+  currentPath = Astro.url.pathname 
+} = Astro.props;
+
+const fullTitle = title === 'Home' ? 'Duncan Falconer - Healthcare Interoperability & Technical Architecture' : `${title} | Duncan Falconer`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">
+      Skip to main content
+    </a>
+    
+    <Header currentPath={currentPath} />
+    
+    <main id="main-content">
+      <slot />
+    </main>
+    
+    <Footer />
+  </body>
+</html>
