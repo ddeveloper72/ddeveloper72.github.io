@@ -1,6 +1,6 @@
 ---
 // Projects listing page
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
@@ -133,7 +133,7 @@ const archivedProjects = sortedProjects.filter(p => p.data.status === 'archived'
 </BaseLayout>
 
 <style lang="scss">
-  @import '../styles/variables';
+  @import '../../styles/variables';
   
   .project-section {
     margin-bottom: var(--space-3xl);

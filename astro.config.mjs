@@ -3,12 +3,12 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://duncanfalconer.github.io',
-  integrations: [mdx()],
-  markdown: {
-    shikiConfig: {
-      theme: 'github-light',
-      wrap: true
+    site: 'https://duncanfalconer.github.io',
+    integrations: [mdx()],
+    markdown: {
+        shikiConfig: {
+            theme: 'github-light',
+            wrap: true
+        }
     }
-  }
 });

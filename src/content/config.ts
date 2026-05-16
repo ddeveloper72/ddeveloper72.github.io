@@ -8,12 +8,12 @@ const projects = defineCollection({
     description: z.string(),
     tags: z.array(z.string()),
     technologies: z.array(z.string()),
-    repository: z.string().url(),
+    repository: z.string().url().optional(),
     demo: z.string().url().optional(),
     status: z.enum(['active', 'completed', 'in-progress', 'archived']),
     featured: z.boolean().default(false),
     caseStudy: z.string().optional(),
-    publishDate: z.date(),
+    publishDate: z.coerce.date(),
     order: z.number().optional()
   })
 });
@@ -30,7 +30,7 @@ const caseStudies = defineCollection({
     standards: z.array(z.string()).optional(),
     repository: z.string().url(),
     demo: z.string().url().optional(),
-    publishDate: z.date(),
+    publishDate: z.coerce.date(),
     featured: z.boolean().default(false),
     order: z.number().optional()
   })
@@ -43,8 +43,8 @@ const timeline = defineCollection({
     title: z.string(),
     organization: z.string(),
     role: z.string(),
-    startDate: z.date(),
-    endDate: z.date().optional(),
+    startDate: z.coerce.date(),
+    endDate: z.coerce.date().optional(),
     location: z.string().optional(),
     description: z.string(),
     responsibilities: z.array(z.string()).optional(),
