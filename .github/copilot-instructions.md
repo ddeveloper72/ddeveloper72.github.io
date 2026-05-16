@@ -35,6 +35,31 @@ After each major section:
 - Record any important technical decisions.
 - Suggest a suitable git commit message.
 
+## Privacy and Security
+
+**CRITICAL: Do not expose personal information in portfolio content.**
+
+When writing documentation or code examples:
+
+- **Never include real usernames** in file paths (e.g., `C:\Users\Duncan\...`)
+- **Use generic placeholders** instead:
+  - `path/to/project` or `~/project`
+  - `C:\Projects\project_name`
+  - `/home/user/project`
+- **Avoid personal identifiers** in:
+  - File paths
+  - Configuration examples
+  - Command-line examples
+  - Code snippets
+  - Documentation
+- **Redact sensitive data**:
+  - API keys (use `YOUR_API_KEY_HERE`)
+  - Database credentials (use placeholders)
+  - IP addresses (use `192.168.x.x` or `example.com`)
+  - Server URLs for local-only projects
+
+**Exception**: The site owner's public professional identity (name, GitHub username, LinkedIn) is acceptable in appropriate contexts like the About page or project authorship.
+
 ## Coding Notes
 
 Use `docs/coding-notes.md` to record:

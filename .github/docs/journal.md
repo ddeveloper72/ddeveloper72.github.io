@@ -875,7 +875,7 @@ User requested to remove Synthea placeholder and explore local projects not yet 
 
 ### New Project: CellSeeU - Privacy Awareness Dashboard
 
-**Source**: Local project at `C:\Users\Duncan\Visual_Studio_Projects\cell_see_u`
+**Source**: Local project (not yet on GitHub)
 
 **File Created**: `cell-see-u.md` (featured project)
 

@@ -203,7 +203,7 @@ Study accuracy of WiFi-based positioning systems compared to GPS.
 
 ### Setup Backend:
 ```powershell
-cd C:\Users\Duncan\Visual_Studio_Projects\cell_see_u
+cd path/to/cell_see_u
 .\.venv\Scripts\Activate.ps1
 python app.py
 ```
@@ -278,7 +278,7 @@ This project demonstrates:
 
 ## Notes
 
-- **Local Development**: Currently runs on private network (192.168.0.67:5000)
+- **Local Development**: Runs on private network (e.g., `http://192.168.x.x:5000`)
 - **Educational Purpose**: Designed to raise privacy awareness, not for malicious tracking
 - **No GitHub Repository**: Private project not yet published
 - **Android App**: Requires manual APK installation (not on Play Store)
