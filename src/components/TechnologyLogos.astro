@@ -1,0 +1,158 @@
+---
+import { Image } from 'astro:assets';
+import myhealthLogo from '../assets/images/myhealth-eu-logo.svg';
+import xtehrLogo from '../assets/images/xt-ehr-logo.png';
+---
+
+<section class="tech-logos-section">
+  <h2>Healthcare Standards & European Initiatives</h2>
+  <p class="section-intro">
+    I work extensively with European healthcare interoperability initiatives 
+    and open standards for cross-border health data exchange
+  </p>
+  
+  <div class="tech-logo-grid">
+    <div class="logo-item">
+      <a href="https://health.ec.europa.eu/ehealth-digital-health-and-care/eu-cross-border-healthcare-directive_en" target="_blank" rel="noopener noreferrer">
+        <Image 
+          src={myhealthLogo} 
+          alt="MyHealth@EU - Cross-border healthcare data exchange" 
+          width={160}
+          loading="lazy"
+        />
+      </a>
+    </div>
+    
+    <div class="logo-item">
+      <a href="https://www.xt-ehr.eu/" target="_blank" rel="noopener noreferrer">
+        <Image 
+          src={xtehrLogo} 
+          alt="Xt-EHR - Extended EHR for EU Data Space" 
+          width={140}
+          loading="lazy"
+        />
+      </a>
+    </div>
+  </div>
+  
+  <div class="standards-text">
+    <p>
+      <strong>Standards I work with:</strong> HL7 FHIR®, HL7 CDA®, IHE Profiles (XDS, XCA), 
+      DICOM, SNOMED CT, LOINC, and European Health Data Space (EHDS) specifications.
+    </p>
+  </div>
+  
+  <div class="trademark-notice">
+    <p>
+      <strong>Trademark Notice:</strong> Logos are trademarks of their respective owners 
+      and are used here for descriptive purposes only. This site is not affiliated with 
+      or endorsed by the European Commission, HL7®, or any related programme. 
+      HL7® and FHIR® are registered trademarks of Health Level Seven International.
+    </p>
+  </div>
+</section>
+
+<style lang="scss">
+  @import '../styles/variables';
+  
+  .tech-logos-section {
+    margin: var(--space-3xl) 0;
+    padding: var(--space-2xl) 0;
+    background: linear-gradient(to bottom, transparent, var(--color-background-alt) 20%, var(--color-background-alt) 80%, transparent);
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: var(--space-md);
+  }
+  
+  .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-2xl);
+    color: var(--color-text-light);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  .tech-logo-grid {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: var(--space-xl) 0;
+    
+    @include media-md {
+      gap: 4rem;
+    }
+  }
+  
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    transition: transform 0.2s ease;
+    
+    a {
+      display: block;
+      text-decoration: none;
+      
+      &:hover {
+        transform: translateY(-4px);
+      }
+      
+      &:focus-visible {
+        @include focus-ring;
+        border-radius: var(--radius-md);
+      }
+    }
+    
+    img {
+      filter: grayscale(20%);
+      transition: filter 0.2s ease;
+      
+      &:hover {
+        filter: grayscale(0%);
+      }
+    }
+  }
+  
+  .standards-text {
+    text-align: center;
+    max-width: 800px;
+    margin: var(--space-2xl) auto var(--space-xl);
+    padding: var(--space-lg);
+    background-color: var(--color-background);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    
+    p {
+      margin: 0;
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-relaxed);
+    }
+    
+    strong {
+      color: var(--color-primary);
+    }
+  }
+  
+  .trademark-notice {
+    margin-top: var(--space-xl);
+    padding: var(--space-md) var(--space-lg);
+    background-color: var(--color-background);
+    border-left: 3px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    p {
+      margin: 0;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-light);
+      line-height: 1.6;
+    }
+  }
+</style>

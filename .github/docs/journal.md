@@ -1023,3 +1023,69 @@ Portfolio Impact:
 - Added privacy/security research domain
 - First mobile development project in portfolio
 ```
+
+## 2026-05-23 - GitHub Pages Deployment Setup
+
+**Status**: Complete - Automated deployment configured
+
+### What Was Done
+
+#### 1. GitHub Actions Workflow
+Created .github/workflows/deploy.yml for automated deployment:
+- Triggers on push to main branch
+- Manual workflow dispatch option
+- Two-job workflow (build + deploy)
+- Uses official GitHub Actions (checkout@v4, setup-node@v4, upload-pages-artifact@v3, deploy-pages@v4)
+- Node.js 20 runtime
+- Builds Astro site and deploys to GitHub Pages
+
+#### 2. Configuration Updates
+- Updated stro.config.mjs site URL from duncanfalconer.github.io to ddeveloper72.github.io (correct repository name)
+- Verified build scripts in package.json
+- Created comprehensive deployment guide documentation
+
+#### 3. Documentation
+Created .github/docs/deployment-guide.md covering:
+- GitHub Pages settings configuration
+- Commit and push workflow
+- Deployment monitoring
+- Troubleshooting common issues
+- Custom domain setup (optional)
+- Security considerations
+
+### Technical Decisions
+
+1. **GitHub Actions for Deployment** - Free, built-in CI/CD with official Astro support
+2. **Artifact-Based Deployment** - Build artifact uploaded, then deployed separately for reliability
+3. **Permissions Scoping** - Minimal required permissions (contents:read, pages:write, id-token:write)
+4. **Node.js 20** - Latest LTS version for stability and performance
+
+### Deployment Process
+
+When code is pushed to main:
+1. GitHub Actions checks out repository
+2. Installs Node.js 20 and dependencies
+3. Runs 
+pm run build (includes Astro check for TypeScript validation)
+4. Uploads dist folder as artifact
+5. Deploys artifact to GitHub Pages
+6. Site available at https://ddeveloper72.github.io
+
+### Next Steps for User
+
+1. Configure GitHub Pages settings (Settings ? Pages ? Source: GitHub Actions)
+2. Commit all changes including workflow file
+3. Push to main branch
+4. Monitor deployment in Actions tab
+5. Site will be live at https://ddeveloper72.github.io
+
+### Suggested Commit Message
+
+``
+feat: add GitHub Pages deployment workflow
+
+- Add GitHub Actions workflow for automated deployment
+- Update site URL to match repository (ddeveloper72.github.io)
+- Create comprehensive deployment guide
+- Configure artifact-based deployment with permissions
+``

@@ -24,7 +24,7 @@ Before making significant changes:
 
 - Briefly explain what will be changed.
 - Prefer simple, maintainable solutions over clever ones.
-- Avoid large rewrites unless explicitly requested.
+- Avoid large rewrites unless explicitly requested by the user.
 - Preserve existing structure and naming conventions where possible.
 - Do not remove working code unless there is a clear reason.
 
@@ -116,18 +116,7 @@ Keep styling modular and predictable.
 
 ## Mobile-First Requirements
 
-Design for small screens first, then enhance for larger screens.
-
-Use responsive layout patterns such as:
-
-- Single-column layout on mobile
-- Two-column or card grid layouts on tablet and desktop
-- Flexible spacing
-- Fluid typography where appropriate
-
-Check that navigation, cards, timelines, and code snippets work well on mobile.
-
-Avoid fixed-width layouts that break on small screens.
+Design for small screens first, then enhance for larger screens. Use single-column layouts on mobile, expanding to multi-column or grid layouts on larger screens. Ensure navigation, cards, and code snippets are responsive and avoid fixed-width layouts.
 
 ## Accessibility Requirements
 

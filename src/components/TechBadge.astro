@@ -1,0 +1,109 @@
+---
+interface Props {
+  tech: string;
+}
+
+const { tech } = Astro.props;
+
+// Map technologies to colors (based on official brand colors or common conventions)
+const techColors: Record<string, { bg: string; text: string }> = {
+  // Python & Frameworks
+  'python': { bg: '#3776AB', text: '#ffffff' },
+  'python 3': { bg: '#3776AB', text: '#ffffff' },
+  'python 3.6+': { bg: '#3776AB', text: '#ffffff' },
+  'python 3.11': { bg: '#3776AB', text: '#ffffff' },
+  'python 3.12': { bg: '#3776AB', text: '#ffffff' },
+  'django': { bg: '#0C4B33', text: '#ffffff' },
+  'django 5.1': { bg: '#0C4B33', text: '#ffffff' },
+  'django 5.2': { bg: '#0C4B33', text: '#ffffff' },
+  'django rest framework': { bg: '#A30000', text: '#ffffff' },
+  'django rest framework 3.15': { bg: '#A30000', text: '#ffffff' },
+  'flask': { bg: '#000000', text: '#ffffff' },
+  'streamlit': { bg: '#FF4B4B', text: '#ffffff' },
+  
+  // Frontend
+  'angular': { bg: '#DD0031', text: '#ffffff' },
+  'typescript': { bg: '#3178C6', text: '#ffffff' },
+  'javascript': { bg: '#F7DF1E', text: '#000000' },
+  'html': { bg: '#E34F26', text: '#ffffff' },
+  'scss': { bg: '#CC6699', text: '#ffffff' },
+  'bootstrap': { bg: '#7952B3', text: '#ffffff' },
+  'bootstrap 5': { bg: '#7952B3', text: '#ffffff' },
+  'leaflet.js': { bg: '#199900', text: '#ffffff' },
+  
+  // Databases
+  'postgresql': { bg: '#4169E1', text: '#ffffff' },
+  'mongodb': { bg: '#47A248', text: '#ffffff' },
+  'azure sql': { bg: '#0078D4', text: '#ffffff' },
+  
+  // Cloud & Infrastructure
+  'azure': { bg: '#0078D4', text: '#ffffff' },
+  'azure fhir': { bg: '#0078D4', text: '#ffffff' },
+  'azure ad': { bg: '#0078D4', text: '#ffffff' },
+  'azure ad b2c': { bg: '#0078D4', text: '#ffffff' },
+  'aws s3': { bg: '#FF9900', text: '#000000' },
+  'heroku': { bg: '#430098', text: '#ffffff' },
+  'docker': { bg: '#2496ED', text: '#ffffff' },
+  'docker compose': { bg: '#2496ED', text: '#ffffff' },
+  'kubernetes': { bg: '#326CE5', text: '#ffffff' },
+  
+  // Healthcare Standards
+  'fhir': { bg: '#ED1C24', text: '#ffffff' },
+  'fhir r4': { bg: '#ED1C24', text: '#ffffff' },
+  'cda': { bg: '#FF6B35', text: '#ffffff' },
+  'cda r2': { bg: '#FF6B35', text: '#ffffff' },
+  'hl7': { bg: '#ED1C24', text: '#ffffff' },
+  'hapi fhir': { bg: '#ED1C24', text: '#ffffff' },
+  'ihe': { bg: '#005EB8', text: '#ffffff' },
+  'dicom': { bg: '#005A9C', text: '#ffffff' },
+  
+  // Healthcare Services
+  'ehds matchbox': { bg: '#0066CC', text: '#ffffff' },
+  'gazelle evs': { bg: '#00A859', text: '#ffffff' },
+  'gazelle': { bg: '#00A859', text: '#ffffff' },
+  
+  // Other
+  'json': { bg: '#000000', text: '#ffffff' },
+  'xml': { bg: '#FF6600', text: '#ffffff' },
+  'base64': { bg: '#333333', text: '#ffffff' },
+  'playwright': { bg: '#2EAD33', text: '#ffffff' },
+  'requests': { bg: '#F7931E', text: '#000000' },
+  'python-dotenv': { bg: '#ECD53F', text: '#000000' },
+  'slack block kit': { bg: '#4A154B', text: '#ffffff' },
+  'opencellid api': { bg: '#009688', text: '#ffffff' },
+  'irish rail api': { bg: '#006633', text: '#ffffff' },
+  'gtfs-r': { bg: '#00A94F', text: '#ffffff' },
+  'gps': { bg: '#4285F4', text: '#ffffff' },
+  'compass sensors': { bg: '#FF5722', text: '#ffffff' },
+  'java': { bg: '#007396', text: '#ffffff' },
+  'android': { bg: '#3DDC84', text: '#000000' },
+};
+
+// Get color for technology (case-insensitive lookup)
+const techKey = tech.toLowerCase();
+const colors = techColors[techKey] || { bg: '#6B7280', text: '#ffffff' }; // Default gray
+---
+
+<span class="tech-badge" style={`background-color: ${colors.bg}; color: ${colors.text};`}>
+  {tech}
+</span>
+
+<style lang="scss">
+  .tech-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25;
+    border-radius: 0.375rem;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+  }
+</style>

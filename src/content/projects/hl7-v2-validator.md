@@ -3,11 +3,13 @@ title: "Gazelle HL7 v2 Validator"
 description: "Web application for validating HL7 v2 Healthlink XML files using the Gazelle EVS API with auto-correction and PDF reporting"
 tags: ["HL7 v2", "Healthcare", "Validation", "Integration", "Gazelle"]
 technologies: ["Python", "Flask", "Bootstrap", "Playwright", "Gazelle EVS API"]
+repository: "https://github.com/ddeveloper72/HL7_v2_Message_Validator-Auto-Correct"
 demo: "https://hl7-v2-message-validator-a1efcbc737cd.herokuapp.com/"
 status: "active"
 featured: true
 publishDate: 2025-11-15
 order: 5
+caseStudy: "hl7-v2-validator"
 ---
 
 A professional web application for validating HL7 v2 Healthlink XML files using the Gazelle EVS (External Validation Service) API, featuring intelligent auto-correction and comprehensive PDF reporting.

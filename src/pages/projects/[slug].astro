@@ -1,6 +1,7 @@
 ---
 // Individual project page
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TechBadge from '../../components/TechBadge.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -65,7 +66,7 @@ const { Content } = await project.render();
             <h3>Technologies</h3>
             <div class="tags">
               {project.data.technologies.map((tech) => (
-                <span class="tag tag-primary">{tech}</span>
+                <TechBadge tech={tech} />
               ))}
             </div>
           </div>

@@ -1,6 +1,7 @@
 ---
 // About page
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TechnologyLogos from '../components/TechnologyLogos.astro';
 ---
 
 <BaseLayout 
@@ -46,6 +47,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <ul>
           <li><strong>API Design</strong> - RESTful APIs, governance, documentation, and developer experience</li>
           <li><strong>Integration Platforms</strong> - Design and delivery of healthcare integration infrastructure</li>
+          <li><strong>Terminology Services</strong> - FHIR terminology servers, SNOMED CT, and clinical coding systems</li>
+          <li><strong>Medication Management</strong> - National medicinal product catalogues and ePrescription infrastructure</li>
           <li><strong>Security Architecture</strong> - Healthcare data protection and privacy-preserving design</li>
           <li><strong>Cloud Architecture</strong> - Azure-based healthcare solutions and modern deployment patterns</li>
         </ul>
@@ -70,16 +73,99 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <li><strong>Developer experience</strong> as a key success factor</li>
           <li><strong>Security and privacy</strong> by design</li>
         </ul>
-        
+      </div>
+    </div>
+  </div>
+
+  <TechnologyLogos />
+
+  <div class="section">
+    <div class="container">
+      <div class="content-wrapper">
         <h2>Current Focus</h2>
         <p>
           My current work involves:
         </p>
         <ul>
-          <li>Leading Ireland's MyHealth@EU Patient Summary implementation</li>
+          <li>Leading technical architecture for Ireland's <strong>MyHealth@EU</strong> implementation as part of the European Health Data Space (EHDS)</li>
+          <li>Contributing to <strong>Xt-EHR</strong> (European Health Data Space project) across multiple work packages:
+            <ul>
+              <li>WP6.1: Patient Summaries towards EHDS</li>
+              <li>WP6.2: Electronic Prescriptions and Dispensations</li>
+              <li>WP7.1: Laboratory Results and Reports</li>
+              <li>WP7.2: Medical Imaging and Reports</li>
+            </ul>
+          </li>
           <li>Establishing FHIR as the primary integration standard for HSE systems</li>
           <li>Designing API platforms and developer tools for healthcare integration</li>
-          <li>Contributing to European healthcare interoperability initiatives</li>
+          <li>Active participation in European healthcare interoperability working groups and standards development</li>
+        </ul>
+        
+        <h3>MyHealth@EU: Cross-Border Healthcare in Europe</h3>
+        <p>
+          Leading the technical architecture for Ireland's National Contact Point (NCP) for eHealth, 
+          enabling secure cross-border exchange of healthcare data across the European Union. 
+          MyHealth@EU is the operational service supporting the European Health Data Space Regulation.
+        </p>
+        <p>
+          <strong>Current Services:</strong>
+        </p>
+        <ul>
+          <li><strong>Patient Summary</strong> - Essential medical information for treatment abroad</li>
+          <li><strong>ePrescription/eDispensation</strong> - Cross-border medication prescribing and dispensing</li>
+        </ul>
+        <p>
+          <strong>Future Services (in development with Xt-EHR):</strong>
+        </p>
+        <ul>
+          <li>Laboratory results and reports</li>
+          <li>Hospital discharge reports</li>
+          <li>Medical images (X-rays, MRI, CT scans)</li>
+        </ul>
+        
+        <h3>National Infrastructure & Standards</h3>
+        <p>
+          Contributing to Ireland's foundational interoperability infrastructure:
+        </p>
+        <ul>
+          <li><strong>National Medicinal Product Catalogue (NMPC)</strong> - Testing and evaluation of national medication management API using SNOMED CT terminology, supporting integrated medicine management across primary and secondary care</li>
+          <li><strong>Central Terminology Server (CTS)</strong> - Evaluation of FHIR terminology service providing SNOMED CT and Irish clinical reference sets for standardized clinical data representation</li>
+        </ul>
+        <p>
+          These services provide the foundational terminology and medication infrastructure that enables 
+          MyHealth@EU ePrescription services and FHIR-based integration across Irish healthcare systems.
+        </p>
+        
+        <h3>Xt-EHR Project: Building EHDS Technical Specifications</h3>
+        <p>
+          The Xt-EHR project develops the technical specifications and implementation guides 
+          that services like MyHealth@EU implement. Contributing to multiple work packages 
+          developing FHIR-based standards for:
+        </p>
+        <ul>
+          <li><strong>Patient Summaries (WP6.1)</strong> - Core patient data for cross-border exchange</li>
+          <li><strong>Electronic Prescriptions & Dispensations (WP6.2)</strong> - Medication workflows and safety</li>
+          <li><strong>Laboratory Results (WP7.1)</strong> - Diagnostic test results using LOINC, NPU, and SNOMED CT</li>
+          <li><strong>Medical Imaging Reports (WP7.2)</strong> - Radiology reports using HL7 FHIR and DICOM standards</li>
+        </ul>
+        
+        <h2>Certifications & Professional Development</h2>
+        <p>
+          Continuous learning in healthcare interoperability standards and technical architecture:
+        </p>
+        <ul>
+          <li><strong>openEHR & HL7 FHIR Technical Course</strong> - Better (openEHR & HL7 FHIR collaboration), May 2026</li>
+        </ul>
+        
+        <h2>Standards Development & Working Groups</h2>
+        <p>
+          Active participation in European and international healthcare standards development:
+        </p>
+        <ul>
+          <li><strong>HL7 Europe - Medication Prescription and Dispense Working Group</strong> - Contributing to FHIR Implementation Guide development for European exchange format (EEHRxF) under EHDS Regulation, in collaboration with IHE and European projects (XpanDH, Xt-EHR, xShare, UNICOM)</li>
+          <li><strong>Xt-EHR Project Working Groups</strong> - Active contributor to WP6.1, 6.2, 7.1, and 7.2 technical specifications</li>
+          <li><strong>European eHealth Network</strong> - Technical representation in EHDS implementation discussions</li>
+          <li><strong>MyHealth@EU Community</strong> - Collaboration with Member States on cross-border data exchange</li>
         </ul>
         
         <h2>Connect</h2>

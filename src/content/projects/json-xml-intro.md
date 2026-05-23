@@ -8,6 +8,7 @@ status: "completed"
 featured: false
 publishDate: 2025-01-24
 order: 11
+caseStudy: "json-xml-education"
 ---
 
 Educational materials providing an accessible introduction to JSON and XML data formats, specifically designed for healthcare professionals learning FHIR and working with healthcare APIs.

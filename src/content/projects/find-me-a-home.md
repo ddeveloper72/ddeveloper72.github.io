@@ -5,7 +5,7 @@ tags: ["Property Search", "Real Estate", "Ireland", "Flask", "Azure AD B2C", "GT
 technologies: ["Python", "Flask", "PostgreSQL", "Azure AD B2C", "Bootstrap 5", "Leaflet.js", "Irish Rail API"]
 repository: "https://github.com/ddeveloper72/find-me-a-home"
 status: "in-progress"
-featured: true
+featured: false
 publishDate: 2025-08-20
 order: 3
 ---

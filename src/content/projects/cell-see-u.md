@@ -1,7 +1,7 @@
 ---
 title: "CellSeeU - Privacy Awareness Dashboard"
 description: "Comprehensive cellular, WiFi, and wireless tracking detection system with Android app, Flask backend, and real-time WiFi triangulation"
-featured: true
+featured: false
 status: "in-progress"
 tags: ["Privacy", "Security", "Android", "Python", "Flask", "WiFi", "Mapping"]
 technologies: ["Android", "Java", "Python 3", "Flask", "Leaflet.js", "OpenCelliD API", "GPS", "Compass Sensors"]
