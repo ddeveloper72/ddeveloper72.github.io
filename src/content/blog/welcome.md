@@ -1,66 +1,102 @@
 ---
 title: "Welcome to My Blog"
-description: "An introduction to this blog and what I'll be writing about: healthcare interoperability, FHIR implementation, and technical architecture."
+description: "A space for ideas, experiments, and reflections — from healthcare interoperability to coding side projects, AI tools, and the world around me."
 pubDate: 2026-05-23
-tags: ["introduction", "fhir", "interoperability", "healthcare"]
+tags: ["introduction", "blogging", "healthcare", "technology"]
 draft: false
 ---
 
-Welcome! I'm starting this blog to share insights, experiences, and lessons learned from working in healthcare interoperability and technical architecture.
+Welcome! This blog is a space where I write about the ideas, technologies, and experiences that shape my work and curiosity.
 
 ## What I'll Write About
 
-My focus areas include:
+This blog covers a range of topics that interest me:
 
-### Healthcare Interoperability
+### Healthcare Interoperability & Standards
 - **FHIR implementation** - Practical guidance on adopting HL7 FHIR in healthcare systems
 - **Cross-border healthcare** - MyHealth@EU, EHDS, and European health data exchange
-- **Standards implementation** - HL7 CDA, IHE profiles, DICOM, and clinical terminology
+- **Standards work** - HL7 CDA, IHE profiles, DICOM, clinical terminology, and implementation challenges
 
-### Technical Architecture
+### Technical Architecture & Software Development
 - **API design** - RESTful patterns, governance, and developer experience
-- **Integration patterns** - Healthcare system integration at scale
-- **Security & privacy** - Protecting healthcare data while enabling interoperability
+- **Integration patterns** - System integration at scale
+- **Python, Django, Flask** - Building healthcare APIs and web applications
+- **Frontend development** - Accessible, responsive applications
 
-### Practical Software Development
-- **Python ecosystem** - Django, Flask, and FastAPI for healthcare APIs
-- **Frontend development** - Building accessible, responsive healthcare applications
-- **DevOps practices** - Docker, CI/CD, and deployment strategies
+### Coding Experiments & Side Projects
+- **Prototyping** - Quick experiments with new ideas and technologies
+- **Weekend projects** - Small tools, utilities, and learning exercises
+- **Problem-solving** - Tackling interesting technical challenges
+- **Open source** - Contributing to and learning from community projects
+
+### AI-Assisted Development
+- **GitHub Copilot** - How AI pair programming changes my workflow
+- **AI tools** - Exploring LLMs, code generation, and automation
+- **Productivity** - Using AI to accelerate learning and development
+- **Limitations & insights** - What works, what doesn't, and lessons learned
+
+### Exploring New Tools & Technologies
+- **Developer tools** - Editors, terminals, workflows, and productivity setups
+- **Languages & frameworks** - Trying new tech stacks and paradigms
+- **Cloud services** - Azure, Docker, Kubernetes, and deployment strategies
+- **Learning in public** - Documenting experiments and discoveries
+
+### Reflections on Life & the World
+- **Nature & outdoors** - Hiking, photography, and observations
+- **Events & experiences** - Conferences, meetups, travel, and serendipity
+- **Books & media** - What I'm reading, watching, and learning from
+- **Thoughts & musings** - On work, creativity, balance, and curiosity
 
 ## Why This Blog?
 
-Healthcare IT is complex. Standards documents can be dense and implementation guidance often lacks practical context. I want to bridge that gap by sharing:
+I've always found that writing helps me think more clearly. This blog serves several purposes:
 
-- **Real-world examples** from actual implementation projects
-- **Lessons learned** (including mistakes and how to avoid them)
-- **Technical deep-dives** on specific interoperability challenges
-- **Tools and resources** that make healthcare integration easier
+- **Learn in public** - Documenting experiments and discoveries helps solidify understanding
+- **Share practical knowledge** - Healthcare IT and interoperability resources that helped me
+- **Experiment openly** - Trying new tools, technologies, and approaches
+- **Reflect honestly** - On both successes and failures, technical and personal
+- **Connect with others** - Finding people interested in similar problems and ideas
+
+Whether it's a deep technical dive into FHIR validation, a quick prototype built over a weekend, thoughts on using AI in development, or reflections from a hike — this blog is where those ideas live.
 
 ## Who This Is For
 
-This blog is written for:
-- **Healthcare IT professionals** implementing interoperability standards
-- **Software developers** building healthcare applications
-- **Technical architects** designing integration solutions
-- **Clinical informaticians** bridging clinical and technical domains
+This blog is for anyone interested in:
+- Healthcare interoperability and standards implementation
+- Software development and technical architecture
+- Experimenting with new technologies and tools
+- AI-assisted development and productivity
+- Learning and building in public
+- The intersection of technology, healthcare, and everyday life
+
+If you're curious about these topics, welcome! 🙌
 
 ## Topics Coming Soon
 
-I'm planning posts on:
+Upcoming posts might include:
 - Setting up a local FHIR server for development
-- Validating FHIR resources with HL7 profiles
-- Understanding Patient Summary (IPS) structure
-- MyHealth@EU technical architecture
-- Converting between HL7 v2, CDA, and FHIR
-- API security patterns for healthcare
+- Building a validator with Playwright and Python
+- Using GitHub Copilot to accelerate healthcare API development
+- Weekend project: Automating something tedious
+- MyHealth@EU technical architecture deep-dive
+- Lessons from converting between HL7 v2, CDA, and FHIR
+- Reflections on AI-assisted coding after 6 months
+- Favorite developer tools and workflows
+- A hike that changed my perspective on a problem
+To see what I'm building:
+- [Projects](/projects) - Healthcare interoperability tools and side projects
+- [Case Studies](/case-studies) - Deep dives on building solutions
+- [Timeline](/timeline) - My professional journey in healthcare IT
 
-## Stay Connected
+Let's connect:
+- [GitHub](https://github.com/ddeveloper72) - Code, experiments, and contributions
+- [LinkedIn](https://www.linkedin.com/in/duncan-falconer-ireland/) - Professional updates and healthcare interoperability discussions
 
-If you find these topics interesting, check out:
-- My [projects](/projects) showcasing healthcare interoperability tools
-- My [case studies](/case-studies) on building practical solutions
-- My [professional timeline](/timeline) showing my work in healthcare IT
+Whether you're working on healthcare standards, experimenting with AI tools, building side projects, or just curious about these topics — I'd love to hear from you.
 
+---
+
+Thanks for reading. More posts coming soon.
 Feel free to reach out via [GitHub](https://github.com/ddeveloper72) or [LinkedIn](https://www.linkedin.com/in/duncan-falconer-ireland/) if you'd like to discuss healthcare interoperability challenges or collaboration opportunities.
 
 ---

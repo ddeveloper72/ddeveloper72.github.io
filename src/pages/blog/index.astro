@@ -25,14 +25,15 @@ const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
 
 <BaseLayout 
   title="Blog" 
-  description="Thoughts on healthcare interoperability, FHIR, technical architecture, and standards implementation"
+  description="Ideas, technologies, and experiences from healthcare interoperability to coding experiments, AI-assisted development, side projects, and reflections on the world around me"
 >
   <div class="section">
     <div class="container">
       <h1>Blog</h1>
       <p class="lead">
-        Writing about healthcare interoperability, FHIR implementation, 
-        technical architecture, and practical standards adoption.
+        A place where I write about the ideas, technologies, and experiences that shape my work and curiosity — 
+        from healthcare interoperability and standards implementation, to coding experiments, AI‑assisted development, 
+        prototyping side projects, exploring new tools, and reflecting on nature, events, and the world around me.
       </p>
       
       {publishedPosts.length === 0 ? (
