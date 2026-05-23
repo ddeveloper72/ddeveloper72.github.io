@@ -1,0 +1,147 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+}
+
+const { title, description, pubDate, updatedDate, tags } = Astro.props;
+---
+
+<BaseLayout 
+  title={title}
+  description={description || `Blog post: ${title}`}
+>
+  <article class="section">
+    <div class="container">
+      <div class="blog-header">
+        <a href="/blog" class="back-link">← Back to Blog</a>
+        
+        <h1>{title}</h1>
+        
+        <div class="blog-meta">
+          <time datetime={pubDate.toISOString()}>
+            {pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+          
+          {updatedDate && (
+            <span class="updated">
+              Updated: {updatedDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </span>
+          )}
+        </div>
+        
+        {tags && tags.length > 0 && (
+          <div class="tags">
+            {tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+      
+      <div class="content-wrapper blog-content">
+        <slot />
+      </div>
+      
+      <div style="margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--color-border);">
+        <a href="/blog" class="btn btn-outline">← Back to Blog</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../styles/variables';
+  
+  .blog-header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: var(--space-lg);
+      color: var(--color-text-light);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+      transition: color 0.2s ease;
+      
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+    
+    h1 {
+      margin-bottom: var(--space-md);
+    }
+  }
+  
+  .blog-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: center;
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    
+    time {
+      font-weight: var(--font-weight-medium);
+    }
+    
+    .updated {
+      padding-left: var(--space-md);
+      border-left: 1px solid var(--color-border);
+      font-style: italic;
+    }
+  }
+  
+  .blog-content {
+    // Additional blog-specific content styling
+    
+    // Make first paragraph a bit larger
+    > p:first-of-type {
+      font-size: var(--font-size-lg);
+      line-height: var(--line-height-relaxed);
+      color: var(--color-text);
+    }
+    
+    // Add more spacing between sections
+    > h2 {
+      margin-top: var(--space-2xl);
+      margin-bottom: var(--space-lg);
+    }
+    
+    > h3 {
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-md);
+    }
+    
+    // Style images
+    img {
+      border-radius: var(--radius-md);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    // Style blockquotes nicely for blog posts
+    blockquote {
+      border-left-width: 4px;
+      padding: var(--space-lg);
+      background-color: var(--color-background-alt);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+  }
+</style>

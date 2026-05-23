@@ -55,8 +55,22 @@ const timeline = defineCollection({
   })
 });
 
+// Blog collection schema
+const blog = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    tags: z.array(z.string()).optional(),
+    draft: z.boolean().default(false)
+  })
+});
+
 export const collections = {
   projects,
   'case-studies': caseStudies,
-  timeline
+  timeline,
+  blog
 };

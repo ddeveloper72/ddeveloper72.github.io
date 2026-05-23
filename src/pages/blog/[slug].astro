@@ -1,0 +1,34 @@
+---
+// Individual blog post page
+import BlogPost from '../../layouts/BlogPost.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  
+  // Filter out draft posts in production
+  const publishedPosts = posts.filter(post => !post.data.draft);
+  
+  return publishedPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+type Props = {
+  post: CollectionEntry<'blog'>;
+};
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BlogPost 
+  title={post.data.title}
+  description={post.data.description}
+  pubDate={post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+  tags={post.data.tags}
+>
+  <Content />
+</BlogPost>
