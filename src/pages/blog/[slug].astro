@@ -6,8 +6,8 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   
-  // Filter out draft posts in production
-  const publishedPosts = posts.filter(post => !post.data.draft);
+  // Filter out draft posts only in production (show drafts in dev mode)
+  const publishedPosts = posts.filter(post => import.meta.env.DEV || !post.data.draft);
   
   return publishedPosts.map((post) => ({
     params: { slug: post.slug },
