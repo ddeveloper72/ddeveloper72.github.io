@@ -52,8 +52,11 @@ The platform visualises the **communication chain, agent status, map confidence,
 - **Industrial Inspection** - Confined space hazard assessment
 - **Archaeological Exploration** - Non-destructive mapping of fragile heritage sites
 
-Screensot of RescueMesh tactical map UI.
+Screensot of RescueMesh Industrial Survey tactical map UI.
 ![RescueMesh screenshot](../../assets/images/rm-tactical-map.png)
+
+Screensot of RescueMesh Cave Rescue tactical map UI.
+![RescueMesh screenshot](../../assets/images/rm-tactical-map2.png)
 
 ## Key Features
 
