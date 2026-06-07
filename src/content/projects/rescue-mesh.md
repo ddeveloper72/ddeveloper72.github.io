@@ -8,7 +8,7 @@ demo: "https://github.com/ddeveloper72/rescuemesh-mission-platform/blob/main/doc
 status: "in-progress"
 featured: true
 publishDate: 2026-05-31
-order: 14
+order: 3
 ---
 
 # RescueMesh Mission Platform
