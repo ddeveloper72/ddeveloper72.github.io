@@ -46,6 +46,10 @@ java -jar hapi-fhir-jpaserver.war
 
 The server uses an embedded H2 database by default, which is perfect for development. For production use, you'd want to configure it with PostgreSQL or another persistent database.
 
+![HAPI FHIR Server Home Page](../../assets/images/blog/hapi-fhir-home.png)
+
+Once your server is running, you'll see the home page shown above with the HAPI FHIR logo and server information. The interface provides quick access to server actions, resource types, and documentation.
+
 ## Testing It Works
 
 Once your server is running, let's verify it's working. Open your browser or REST client and try:
