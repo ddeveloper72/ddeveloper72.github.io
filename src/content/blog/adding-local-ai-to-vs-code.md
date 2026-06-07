@@ -136,9 +136,6 @@ Open Continue: ``Ctrl+Shift+P → Continue: Focus Continue Sidebar``.
 
 Confirm the model dropdown lists the configured roles.
 
-Screenshot suggestion: Continue sidebar showing models.
-![Continue sidebar models](images/continue-sidebar.png)
-
 ## 4. Verify everything is working
 ### 4.1 API and model checks (PowerShell)
 
@@ -160,8 +157,6 @@ netstat -ano | findstr 11434
 
 **Expected:** Invoke-RestMethod returns JSON with available models.
 
-Screenshot suggestion: API JSON output.
-![API tags JSON](images/api-tags.png)
 
 ### 4.2 VS Code tests
 Chat: Highlight code or open the Continue chat and ask a question. The first response may be slow while the model loads (10–30s on CPU).
