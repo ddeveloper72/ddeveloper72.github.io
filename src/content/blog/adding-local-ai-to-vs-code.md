@@ -47,7 +47,7 @@ Run **Ollama** locally, pull **Granite 3.3:8B**, and configure **Continue.dev** 
 where.exe ollama
 ollama --version
 ```
-Screenshot suggestion: installer UI.
+Screensot of Ollama installer UI.
 ![Ollama installer screenshot](../../assets/images/blog/ollama-installer.png)
 
 
