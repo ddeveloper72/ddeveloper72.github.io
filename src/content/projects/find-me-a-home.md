@@ -7,7 +7,7 @@ repository: "https://github.com/ddeveloper72/find-me-a-home"
 status: "in-progress"
 featured: false
 publishDate: 2025-08-20
-order: 3
+order: 14
 ---
 
 A comprehensive web application designed to help people find homes for sale across Ireland with integrated information about nearby secondary schools and real-time transport options, providing a holistic view of property locations.
