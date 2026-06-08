@@ -38,19 +38,19 @@ Healthcare developers and implementers need reliable validation before deploying
 
 ## Key Features
 
-### 🎯 Smart Validation
+### Smart Validation
 - **Drag-and-drop file upload** with 10MB limit
 - **Auto-format detection** - JSON routes to FHIR validators, XML to CDA validators
 - **Pre-validation checks** - File size, JSON/XML format with line-specific errors
 - **API timeout handling** - 60-second timeout prevents hanging
 
-### 📊 Detailed Error Reports
+### Detailed Error Reports
 - **Tabbed interface** with Errors, Warnings, and Information
 - **Rich diagnostics**: Line numbers, FHIR expression paths, context-specific help
 - **Multiple formats**: XSD errors, Schematron results, FHIR OperationOutcome parsing
 - **Persistent reports**: Links to Gazelle web UI for full CDA validation results
 
-### 🚀 Production-Ready
+### Production-Ready
 - **Live demo on Streamlit** - No installation required
 - **Example files included** - Try validation immediately
 - **Network error recovery** - User-friendly error messages
@@ -95,4 +95,4 @@ Includes comprehensive security best practices, secrets management with environm
 
 ## Live Demo
 
-🚀 **[Try it now](https://ddeveloper72-fhir-ips-validator-streamlit-app-ocgntm.streamlit.app/)** - No installation required!
+**[Try it now](https://ddeveloper72-fhir-ips-validator-streamlit-app-ocgntm.streamlit.app/)** - No installation required!
