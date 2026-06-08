@@ -13,7 +13,6 @@ order: 13
 
 Lightweight Flask application that allows users to upload PDF or XML files and encode them to Base64 format, with preview and download capabilities for the encoded output.
 
-> ⚒️ Work in progress 🚧
 
 ## Purpose
 
@@ -92,4 +91,4 @@ Simplifies Base64 encoding for:
 - **Heroku Deployment**: Accessible from anywhere
 - **Simple Interface**: Focus on core functionality
 
-*Work in progress - additional features coming soon.*
+

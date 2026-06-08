@@ -18,31 +18,31 @@ House hunting in Ireland requires understanding not just the property itself, bu
 
 ## Key Features
 
-### 🏠 Property Listings
+### Property Listings
 - Browse properties from multiple sources across Ireland
 - Smart alerts for new properties matching search criteria
 - Favorites and rankings system for saved properties
 - Advanced search filters
 
-### 🎓 School Information
+### School Information
 - Detailed information about nearby secondary schools
 - Department of Education official data integration
 - School quality metrics and enrollment information
 - Distance calculations from properties
 
-### 🚆 Real-Time Transport Options
+### Real-Time Transport Options
 - Irish Rail API integration for train schedules
 - GTFS-R real-time bus and LUAS data
 - Commute time calculations
 - Transport accessibility scoring
 
-### 🗺️ Interactive Mapping
+### Interactive Mapping
 - Leaflet.js-based interactive maps
 - Visualize properties, schools, and transport stops
 - Distance and route visualization
 - Multiple layer overlays
 
-### 🔐 Secure Authentication
+### Secure Authentication
 - Azure AD B2C integration for enterprise-grade authentication
 - User profile management
 - Saved searches and preferences

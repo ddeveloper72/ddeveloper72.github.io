@@ -13,7 +13,7 @@ order: 2
 
 Comprehensive evidence-based analysis comparing the Xt-EHR Imaging Report information model (v0.2.1) against 2,738 real-world imaging reports from the PARROT dataset, providing data-driven recommendations for "basic" vs "beyond basic" element classification.
 
-> 🤖 **EU AI Act Compliant**: This analysis was performed with AI assistance (Claude Sonnet 4.5) in accordance with EU AI Act transparency requirements. All findings are validated against source data and subject to expert review.
+> **EU AI Act Compliant**: This analysis was performed with AI assistance (Claude Sonnet 4.5) in accordance with EU AI Act transparency requirements. All findings are validated against source data and subject to expert review.
 
 ## Purpose
 
@@ -27,13 +27,13 @@ The European Health Data Space (EHDS) Xt-EHR project defines comprehensive FHIR 
 
 Based on comprehensive analysis of **2,738 real-world imaging reports** across **14 languages** and **21 countries**:
 
-### 📈 Usage Statistics
+### Usage Statistics
 - **11 core elements** provide **90%+ coverage** of real-world clinical value
 - **31+ additional elements** identified as "beyond basic" candidates
 - **100% coverage** of essential clinical content (narratives, modalities, anatomy)
 - **0% coverage** of administrative metadata in real-world reports
 
-### 🎯 Evidence-Based Classification
+### Evidence-Based Classification
 
 | Category | Elements | Clinical Value | Implementation Complexity |
 |----------|----------|----------------|---------------------------|
@@ -43,7 +43,7 @@ Based on comprehensive analysis of **2,738 real-world imaging reports** across *
 
 ## Data Sources
 
-### 🏛️ Xt-EHR Information Model
+### Xt-EHR Information Model
 - **Official Site**: [Xt-EHR Project](https://www.xt-ehr.eu/)
 - **FHIR Implementation Guide**: [EHDS Logical Information Models](https://www.xt-ehr.eu/fhir/models/history.html)
 - **Version Analyzed**: v0.2.1 (October 10, 2025) - First preview version
@@ -52,7 +52,7 @@ Based on comprehensive analysis of **2,738 real-world imaging reports** across *
   - [Imaging Report Model](https://github.com/xt-ehr/xt-ehr-common/tree/main/input/fsh/EHDS-models/imagingReport.fsh): Comprehensive diagnostic report structure
   - [Imaging Study Model](https://github.com/xt-ehr/xt-ehr-common/tree/main/input/fsh/EHDS-models/imagingStudy.fsh): DICOM study metadata and organization
 
-### 📊 PARROT Dataset v1.0
+### PARROT Dataset v1.0
 - **Source**: [PARROT-reports/PARROT_v1.0](https://github.com/PARROT-reports/PARROT_v1.0)
 - **Volume**: 2,738 real-world imaging reports
 - **Geographic Coverage**: 21 countries across Europe
@@ -62,14 +62,14 @@ Based on comprehensive analysis of **2,738 real-world imaging reports** across *
 
 ## Analysis Methodology
 
-### 🔄 Process Flow
+### Process Flow
 1. **Model Extraction**: Parse Xt-EHR FHIR FSH definitions
 2. **Real-World Analysis**: Process 2,738 PARROT reports for element usage patterns
 3. **Comparative Mapping**: Map real-world elements to Xt-EHR model specifications
 4. **Classification**: Evidence-based recommendations for Basic/Intermediate/Beyond Basic categories
 5. **Validation**: Expert review and healthcare standards compliance verification
 
-### 🔗 Model Traceability
+### Model Traceability
 Direct references to specific Xt-EHR elements:
 
 | Model Section | FHIR Path | Purpose |
@@ -103,19 +103,19 @@ Direct references to specific Xt-EHR elements:
 
 ## Implementation Strategy
 
-### 📋 Phase 1: Basic Profile (Recommended Start)
+### Phase 1: Basic Profile (Recommended Start)
 **Target**: Core 11 elements for immediate clinical value
 - **Complexity**: Low implementation burden
 - **Coverage**: 90%+ of real-world clinical needs
 - **ROI**: Very high - maximum value with minimal effort
 
-### 🔧 Phase 2: Enhanced Profile (Use Case Driven)
+### Phase 2: Enhanced Profile (Use Case Driven)
 **Target**: Additional 6 intermediate elements
 - **Complexity**: Medium - specific workflow integration
 - **Coverage**: Enhanced clinical context and workflows
 - **ROI**: Medium-High - targeted value for specific use cases
 
-### 🏢 Phase 3: Comprehensive Profile (Enterprise/Regulatory)
+### Phase 3: Comprehensive Profile (Enterprise/Regulatory)
 **Target**: Full model implementation including beyond basic elements
 - **Complexity**: High - complete administrative and technical infrastructure
 - **Coverage**: Full workflow support and regulatory compliance
@@ -139,9 +139,9 @@ This project operates in accordance with the **European Union Artificial Intelli
 - No autonomous clinical decision-making functions
 
 **Key Resources**:
-- 📋 [EU AI Act - European Commission](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)
+- [EU AI Act - European Commission](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)
 - 🇮🇪 [Irish Implementation - Enterprise Ireland](https://enterprise.gov.ie/en/what-we-do/innovation-research-development/artificial-intelligence/eu-ai-act/)
-- 📖 [Project Compliance Statement](https://github.com/ddeveloper72/sub-team-imaging-report-model/blob/main/docs/EU-AI-ACT-COMPLIANCE.md)
+- [Project Compliance Statement](https://github.com/ddeveloper72/sub-team-imaging-report-model/blob/main/docs/EU-AI-ACT-COMPLIANCE.md)
 
 **Timeline Context**:
 - AI Act entered into force: 2 August 2024
