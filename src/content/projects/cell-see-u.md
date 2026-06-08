@@ -12,10 +12,10 @@ publishDate: 2024-11-15
 
 **CellSeeU** is a privacy awareness platform that reveals which services can track your mobile device in real-time by detecting:
 
-- 📡 **Cell towers** that can see your IMEI number
-- 📶 **WiFi networks** that detect your MAC address and probe requests
-- 🧭 **WiFi router locations** estimated using directional triangulation
-- 🗺️ **Detection radius** visualization showing tracking coverage
+- **Cell towers** that can see your IMEI number
+- **WiFi networks** that detect your MAC address and probe requests
+- **WiFi router locations** estimated using directional triangulation
+- **Detection radius** visualization showing tracking coverage
 
 ---
 
@@ -32,13 +32,13 @@ Most smartphone users don't realize how many services track their devices contin
 
 ## Key Features
 
-### 🔍 Privacy Tracking Detection
+### Privacy Tracking Detection
 - **IMEI Detection Radius**: Visual circle showing which cell towers can track you
 - **WiFi MAC Tracking**: Shows which networks detect your WiFi probe requests
 - **Real-time Dashboard**: Live updates as you move around
 - **Tracking Panel**: Lists all services currently detecting your device
 
-### 🧭 WiFi Triangulation System
+### WiFi Triangulation System
 Advanced algorithm that estimates WiFi router positions using:
 1. **Your GPS position** (latitude, longitude)
 2. **Signal strength** (RSSI in dBm)
@@ -50,7 +50,7 @@ Advanced algorithm that estimates WiFi router positions using:
 - 3-5 scans: ±20-50m
 - 10+ scans: ±10-30m
 
-### 📱 Android App Integration
+### Android App Integration
 Custom scanner app that collects:
 - Cell tower data (IMEI, signal strength, carrier, network type)
 - WiFi networks (SSID, BSSID, signal, security)
@@ -137,12 +137,12 @@ Triangulation: Average all positions → (53.2925, -6.6863) ±15m
 ## Security & Privacy Features
 
 ### Built-in Security:
-- 🔒 **Flask-Talisman**: HTTPS enforcement, security headers
-- 🛡️ **CORS Configuration**: Restricted API origins
-- 🔐 **Input Validation**: All API endpoints validate data
-- 🚨 **Rate Limiting**: Prevent API abuse
-- 📝 **Environment Variables**: Secure configuration management
-- ✅ **Security Testing**: Bandit + Safety in test suite
+- **Flask-Talisman**: HTTPS enforcement, security headers
+- **CORS Configuration**: Restricted API origins
+- **Input Validation**: All API endpoints validate data
+- **Rate Limiting**: Prevent API abuse
+- **Environment Variables**: Secure configuration management
+- **Security Testing**: Bandit + Safety in test suite
 
 ### Privacy by Design:
 - No data stored permanently (in-memory only)
@@ -223,7 +223,7 @@ cd android_scanner
 
 ## Current Status & Future Enhancements
 
-### ✅ Implemented:
+### Implemented:
 - Cell tower scanning and detection radius
 - WiFi network scanning with security info
 - Orientation sensor integration (compass, pitch, roll)
@@ -233,12 +233,12 @@ cd android_scanner
 - OpenCelliD integration for tower verification
 - Security headers and CORS configuration
 
-### 🚧 In Progress:
+### In Progress:
 - Improve triangulation accuracy with Kalman filtering
 - Add historical tracking visualization (movement path)
 - Export data to CSV/JSON for analysis
 
-### 💡 Future Ideas:
+### Future Ideas:
 - Bluetooth beacon detection
 - Cell tower handover tracking
 - Signal strength heatmaps
