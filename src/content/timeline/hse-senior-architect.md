@@ -1,8 +1,8 @@
 ---
-title: "Senior Technical Architect"
+title: "Technical Architect"
 organization: "Health Service Executive (HSE)"
-role: "Senior Technical Architect - Healthcare Interoperability"
-startDate: 2022-06-01
+role: "Technical Architect - Healthcare Interoperability"
+startDate: 2023-11-22
 location: "Dublin, Ireland"
 description: "Leading technical architecture for Ireland's MyHealth@EU National Contact Point and European Health Data Space initiatives, establishing FHIR-based cross-border healthcare data exchange"
 type: "work"
