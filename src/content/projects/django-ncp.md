@@ -13,7 +13,7 @@ order: 6
 
 Comprehensive Django 5.2 demonstration application for European cross-border healthcare data exchange, implementing epSOS/eHDSI standards for Patient Summary and clinical document exchange using CDA R2 and FHIR R4.
 
-> ⚠️ **DEMONSTRATION APPLICATION**: This project demonstrates EU healthcare interoperability concepts. Not intended for production clinical use.
+> **DEMONSTRATION APPLICATION**: This project demonstrates EU healthcare interoperability concepts. Not intended for production clinical use.
 
 ## Purpose
 
@@ -33,14 +33,14 @@ MyHealth@EU enables EU citizens to access their health data across borders when 
 ## Demonstration Capabilities
 
 **Supported Clinical Documents** (Demo):
-- ✅ **Patient Summary (PS)**: IPS-compliant cross-border patient summaries
-- ✅ **Laboratory Results**: Clinical lab data integration and display
-- ✅ **Hospital Discharge Reports**: Care continuity documentation
-- ✅ **Medical Imaging Reports**: Radiology report exchange
+- **Patient Summary (PS)**: IPS-compliant cross-border patient summaries
+- **Laboratory Results**: Clinical lab data integration and display
+- **Hospital Discharge Reports**: Care continuity documentation
+- **Medical Imaging Reports**: Radiology report exchange
 
 **Future Roadmap**:
-- 🔄 ePrescription (eP) - Electronic prescription cross-border exchange
-- 🔄 eDispensation (eD) - Pharmacy dispensation records
+- ePrescription (eP) - Electronic prescription cross-border exchange
+- eDispensation (eD) - Pharmacy dispensation records
 
 **Clinical Document Processing**:
 - **CDA R2**: Level 1 (PDF) and Level 3 (structured XML) parsing
@@ -111,9 +111,9 @@ MyHealth@EU enables EU citizens to access their health data across borders when 
 
 | Country | Status | Root OID | Supported Documents |
 |---------|--------|----------|---------------------|
-| 🇮🇪 Ireland | 🧪 Demo | 2.16.372.1.100.1.1 | Patient Summary (PS) |
-| 🇧🇪 Belgium | 🧪 Demo | 2.16.840.1.113883.1.1 | Patient Summary (PS) |
-| 🇵🇹 Portugal | 🧪 Demo | 2.16.620.1.101.10.1 | Patient Summary (PS) |
+| 🇮🇪 Ireland | Demo | 2.16.372.1.100.1.1 | Patient Summary (PS) |
+| 🇧🇪 Belgium | Demo | 2.16.840.1.113883.1.1 | Patient Summary (PS) |
+| 🇵🇹 Portugal | Demo | 2.16.620.1.101.10.1 | Patient Summary (PS) |
 
 *Note: Demonstrates cross-border exchange concepts. Not connected to actual national healthcare systems.*
 
