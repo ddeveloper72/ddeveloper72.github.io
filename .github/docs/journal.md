@@ -1089,3 +1089,381 @@ feat: add GitHub Pages deployment workflow
 - Create comprehensive deployment guide
 - Configure artifact-based deployment with permissions
 ``
+
+## 2026-06-16 - Timeline Component Refactor
+
+**Status**: Complete - First stage timeline refactor implemented
+
+### What Was Done
+
+- Refactored `src/pages/timeline.astro` so it only fetches and sorts timeline entries before handing rendering to components.
+- Added `src/components/timeline/ScrollTimeline.astro` for the semantic timeline list wrapper.
+- Added `src/components/timeline/TimelineItem.astro` for individual milestone rendering.
+- Added `src/styles/_timeline.scss` and imported it from `src/styles/global.scss`.
+- Preserved the existing `timeline` content collection, existing fields, and `startDate` descending sort order.
+- Kept this stage JavaScript-free; the green scroll-progress indicator remains a future enhancement.
+
+### Technical Decisions
+
+1. **Static-first component structure** - Timeline entries remain fully server-rendered from Astro content collections.
+2. **Semantic timeline list** - The timeline uses an ordered list with each milestone rendered as a list item and article.
+3. **Mobile-first layout** - Mobile keeps the rail on the left with stacked content; tablet and desktop introduce a date column, central rail, and content column.
+4. **Global Sass partial** - Timeline styles now live in a dedicated partial instead of page-local SCSS.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated `/timeline/index.html`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+refactor: split timeline page into reusable components
+
+- Add ScrollTimeline and TimelineItem components
+- Move timeline styles into a dedicated Sass partial
+- Preserve timeline collection data and startDate sorting
+- Keep timeline enhancement static-first with no JavaScript
+```
+
+## 2026-06-16 - Timeline Scroll Progress Indicator
+
+**Status**: Complete - Green scroll progress enhancement added
+
+### What Was Done
+
+- Added a muted background rail and green progress rail to `src/components/timeline/ScrollTimeline.astro`.
+- Added `data-scroll-timeline` to the timeline wrapper.
+- Created `src/scripts/timeline-progress.ts` for lightweight scroll-progress behaviour.
+- Updated `src/styles/_timeline.scss` so the green rail height is controlled by `--timeline-progress`.
+- Kept timeline content static-first; the page remains complete if JavaScript fails.
+
+### Technical Decisions
+
+1. **CSS custom property bridge** - JavaScript only writes `--timeline-progress`; CSS handles presentation.
+2. **RequestAnimationFrame batching** - Scroll and resize listeners schedule one update per animation frame.
+3. **Safe progress bounds** - Progress is clamped between 0 and 100 before being applied.
+4. **Reduced motion support** - `prefers-reduced-motion: reduce` removes the rail height transition.
+5. **No new dependencies** - The enhancement uses plain TypeScript and Astro's existing script bundling.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated `/timeline/index.html`.
+- Confirmed the generated timeline HTML contains `data-scroll-timeline`, `.scroll-timeline__progress`, and a bundled module script.
+- Reviewed the responsive SCSS for mobile left-rail layout and desktop date/rail/content layout.
+- Browser automation is not installed in this repo, so no screenshot-based viewport test was run.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+feat: add timeline scroll progress indicator
+
+- Add green progress rail controlled by a CSS custom property
+- Add lightweight requestAnimationFrame scroll script
+- Preserve static timeline content when JavaScript is unavailable
+- Respect reduced-motion preferences
+```
+
+## 2026-06-16 - Timeline Visual Polish and Accessibility Pass
+
+**Status**: Complete - Timeline visual hierarchy and responsive polish improved
+
+### What Was Done
+
+- Added a dedicated timeline page header treatment with an eyebrow label and improved spacing.
+- Refined date typography for stronger scanability on mobile, tablet, and desktop.
+- Improved milestone card hierarchy with a structured header, subtler borders, hover shadow, and clearer content grouping.
+- Polished the timeline rail and dots with improved contrast, rounded rail styling, and a calmer current-state dot.
+- Reworked timeline type/current labels into visible badge-style text so state is not communicated by colour alone.
+- Improved technology tag treatment within timeline cards so badges wrap cleanly and remain readable.
+- Added reduced-motion handling for decorative card movement as well as the progress rail transition.
+
+### Technical Decisions
+
+1. **No new dependencies** - The polish uses existing Astro, SCSS, and CSS custom properties.
+2. **Accessible state labels** - Type and current state remain text labels, with colour used only as supporting treatment.
+3. **Static-first resilience** - Timeline content, dates, dots, and the muted rail remain usable without JavaScript.
+4. **Motion restraint** - Hover movement is subtle and disabled for users who prefer reduced motion.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated `/timeline/index.html`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+style: polish timeline visual hierarchy and accessibility
+
+- Improve timeline header, date, card, rail, dot, and tag styling
+- Keep current/type state visible with text labels
+- Preserve static-first timeline behaviour
+- Respect reduced-motion preferences for decorative effects
+```
+
+## 2026-06-16 - Timeline Optional Schema Enhancements
+
+**Status**: Complete - Optional richer timeline fields added
+
+### What Was Done
+
+- Reviewed the existing `timeline` content collection schema.
+- Added optional `dateLabel`, `highlight`, and `featured` fields to `src/content/config.ts`.
+- Updated `TimelineItem.astro` to display `dateLabel` when present while keeping the underlying date metadata for sorting and machine-readable dates.
+- Added an optional highlight callout to timeline cards.
+- Marked the current HSE Technical Architect role as featured and added a concise highlight based on existing content.
+- Added a broad `May 2026` date label and highlight to the openEHR/FHIR certification entry.
+- Left other timeline entries unchanged because they did not need richer display fields.
+
+### Technical Decisions
+
+1. **Optional-only fields** - Existing timeline markdown files continue to build without new frontmatter.
+2. **No invented facts** - New highlight text is derived from existing descriptions and achievements.
+3. **Date safety** - `dateLabel` changes the visible label only; `startDate` and `endDate` remain the source for sorting and `datetime` values.
+4. **Focused schema scope** - Image fields were not added because there are no timeline-specific images ready to use.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated `/timeline/index.html`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+feat: add optional richer timeline fields
+
+- Add dateLabel, highlight, and featured to timeline schema
+- Display optional timeline highlights in milestone cards
+- Add broad certification date label without changing sort dates
+- Preserve compatibility with existing timeline entries
+```
+
+## 2026-06-16 - Duncan-Specific Timeline Content Expansion
+
+**Status**: Complete - Additional professional story milestones added
+
+### What Was Done
+
+- Added seven concise timeline milestones under `src/content/timeline/`.
+- Expanded the timeline story to include early technical learning, Python/Flask foundations, healthcare standards learning, FHIR Patient Summary prototype work, Django/API/Angular experiments, medical imaging/report interoperability, and the Astro evidence portfolio rebuild.
+- Used broad visible `dateLabel` values for learning and portfolio milestones where exact dates are not the point of the entry.
+- Kept content separate from layout by adding Markdown collection entries rather than hardcoding new timeline content in components.
+- Adjusted `TimelineItem.astro` so only open-ended work roles are labelled as current; project milestones without an end date no longer show the current badge.
+
+### New Timeline Entries
+
+- `early-technical-learning-full-stack.md`
+- `python-flask-portfolio-foundations.md`
+- `healthcare-standards-learning.md`
+- `fhir-patient-summary-prototype.md`
+- `django-rest-angular-api-experiments.md`
+- `medical-imaging-reports-interoperability.md`
+- `ai-assisted-astro-evidence-portfolio.md`
+
+### Technical Decisions
+
+1. **Broad date labels** - Visible labels use years for portfolio learning milestones to avoid presenting invented exact dates.
+2. **Factual tone** - New content is concise and grounded in existing portfolio themes and project work.
+3. **Current-state accuracy** - The current badge is now limited to open-ended work roles, not every entry without an end date.
+4. **Static content model** - All new story content lives in the timeline content collection.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated `/timeline/index.html`.
+- Confirmed the generated timeline output includes the new milestones.
+- Confirmed only the HSE Technical Architect work role renders the current-state badge.
+- Reviewed the existing responsive timeline SCSS for mobile single-column behaviour and desktop date/rail/content layout.
+- Browser automation is not installed in this repo, so no screenshot-based viewport test was run.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+content: expand timeline with portfolio and standards milestones
+
+- Add Duncan-specific technical learning and portfolio milestones
+- Cover Flask, Django, FHIR, CDA, XML, JSON, imaging reports, and AI-assisted Astro work
+- Use broad date labels for non-exact learning milestones
+- Limit current badge to open-ended work roles
+```
+
+## 2026-06-16 - Timeline Grid Correction
+
+**Status**: Complete - Timeline cards restored to a proper adjacent content column
+
+### Problem
+
+The timeline cards could appear squeezed around the centre rail because the rail position used rough percentage offsets while each timeline row used a separate fractional grid. That made the rail, marker, and card columns visually fragile, especially at wider viewport sizes.
+
+### What Was Done
+
+- Audited `timeline.astro`, `ScrollTimeline.astro`, `TimelineItem.astro`, and `_timeline.scss`.
+- Confirmed the DOM structure was sound: date, marker, and content are sibling elements.
+- Reworked `_timeline.scss` so timeline rows use explicit shared CSS variables for date, marker, and content columns.
+- Kept the mobile layout as a left rail plus content column.
+- Set tablet and desktop layouts to a clear date column, narrow marker/rail column, and flexible content card column.
+- Kept the green progress rail, but aligned it from the same column variables instead of approximate layout percentages.
+- Ensured cards use `width: 100%` in the content column with a readable desktop max width.
+
+### Technical Decisions
+
+1. **Shared grid variables** - The rail and row grid now derive from the same date/marker/content column values.
+2. **Rail independence** - The progress rail is absolutely positioned over the marker column and does not influence card width.
+3. **Readable content column** - Cards remain in column 3 on tablet/desktop and use the available content space.
+4. **Mobile-first fallback** - Small screens keep the simpler two-column rail/content layout.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated `/timeline/index.html`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+fix: correct timeline grid and card width
+
+- Align rail position with shared timeline grid columns
+- Keep cards in a wide adjacent content column
+- Preserve mobile left-rail layout and green progress indicator
+- Document the corrected grid pattern
+```
+
+## 2026-06-16 - Timeline Editorial Layout Adjustment
+
+**Status**: Complete - Desktop layout moved closer to the intended reference structure
+
+### What Was Done
+
+- Increased the desktop date column and made date labels significantly more prominent.
+- Kept the centre rail in a fixed marker column so the progress indicator stays separate from content.
+- Changed large-desktop timeline content from boxed cards to broad editorial panels beside the rail.
+- Removed desktop hover lift/shadow for timeline content so the layout feels more like a professional history section than a narrow card feed.
+- Preserved the mobile left-rail layout and tablet three-column structure.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated `/timeline/index.html`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+style: widen timeline into editorial desktop layout
+
+- Enlarge desktop date column and content panel
+- Keep progress rail isolated in the marker column
+- Remove narrow boxed-card feel on large screens
+- Preserve responsive mobile timeline layout
+```
+
+## 2026-06-16 - Timeline Breakpoint Sizing Fix
+
+**Status**: Complete - Prevented card squeeze at DevTools and medium desktop widths
+
+### What Was Done
+
+- Reviewed screenshots showing the timeline entering the wide desktop layout too early.
+- Moved the full editorial three-column layout from the `md`/`lg` range to the `xl` breakpoint.
+- Kept the `md` and `lg` viewport range on the readable left-rail/content layout.
+- Preserved the large date, centre rail, and broad content treatment for genuinely wide screens.
+- Kept the green progress rail aligned to the left rail on smaller widths and the centre marker column on `xl`.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated `/timeline/index.html`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+fix: delay editorial timeline layout until wide screens
+
+- Keep medium widths on readable left-rail layout
+- Move date/rail/content editorial grid to xl breakpoint
+- Prevent timeline cards squeezing when viewport is narrowed
+```
+
+## 2026-06-16 - Timeline Content Track Width Fix
+
+**Status**: Complete - Large-screen text column given a readable minimum width
+
+### What Was Done
+
+- Investigated a large-screen layout where timeline text still wrapped one word per line.
+- Reduced the large-screen date column from `23rem` to `18rem`.
+- Changed the large-screen content column to `minmax(38rem, 1fr)` so it cannot collapse into a narrow strip.
+- Ensured timeline items and content panels stretch to the available grid width.
+- Kept the rail in the centre marker column and preserved the scroll progress indicator.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated `/timeline/index.html`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+fix: enforce readable timeline content width
+
+- Give xl timeline content a minimum readable track width
+- Reduce oversized date column to protect text space
+- Keep rail and progress indicator aligned to marker column
+```
+
+## 2026-06-16 - Timeline Final QA Pass
+
+**Status**: Complete - Timeline QA checks passed with noted manual-review limitation
+
+### Checks Completed
+
+- Ran `npm run build`; Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Confirmed all static routes still generate, including `/timeline/index.html`.
+- Confirmed generated timeline HTML includes the timeline section, entries, badges, rail markup, and progress element.
+- Confirmed timeline-specific files do not add inline `style` attributes.
+- Confirmed no new dependencies were added to `package.json`.
+- Confirmed the progress script uses `requestAnimationFrame`, scroll/resize listeners, and clamps progress between 0 and 100.
+- Confirmed reduced-motion CSS disables decorative timeline transitions.
+- Confirmed timeline content remains server-rendered and readable without JavaScript.
+- Confirmed GitHub Pages assumptions remain unchanged: `astro.config.mjs` still uses `https://ddeveloper72.github.io`, and the deploy workflow still builds with `npm run build` and uploads `dist`.
+
+### Responsive QA Notes
+
+- Mobile and tablet layouts use a left rail plus content column to protect readable card width.
+- Large desktop uses the editorial date/rail/content grid only at the `xl` breakpoint.
+- Large desktop content track now has a minimum readable width to avoid word-per-line wrapping.
+- Technology tags use wrapping styles and do not require horizontal scrolling.
+
+### Known Limitations
+
+- No screenshot-based mobile/tablet/desktop automated test was run because the project does not include Playwright or another browser automation tool.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to the timeline work.
+- Pre-existing inline styles still exist elsewhere in older site files, but no inline styles were added to the timeline implementation.
+
+### Suggested Commit Message
+
+```
+test: complete timeline qa pass
+
+- Verify build, static output, timeline script, and responsive CSS assumptions
+- Document final QA checks and known limitations
+- Confirm deployment assumptions remain unchanged
+```

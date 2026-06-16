@@ -4,8 +4,10 @@ organization: "Better (openEHR & HL7 FHIR collaboration)"
 role: "Certification"
 startDate: 2026-05-01
 endDate: 2026-05-31
+dateLabel: "May 2026"
 type: "certification"
 description: "Completed comprehensive technical course on openEHR and HL7 FHIR interoperability"
+highlight: "openEHR and HL7 FHIR interoperability"
 achievements:
   - "Completed final assessment demonstrating expertise in openEHR and FHIR integration"
   - "Understanding of dual-model archetype approach and FHIR resource mapping"

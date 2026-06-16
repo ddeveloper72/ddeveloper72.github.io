@@ -1,0 +1,120 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'timeline'>;
+}
+
+const { entry } = Astro.props;
+const {
+  title,
+  organization,
+  role,
+  startDate,
+  endDate,
+  dateLabel,
+  location,
+  description,
+  highlight,
+  responsibilities,
+  achievements,
+  technologies,
+  type,
+  featured
+} = entry.data;
+
+const isCurrent = type === 'work' && endDate === undefined;
+const typeLabel = type.charAt(0).toUpperCase() + type.slice(1);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+function dateTimeValue(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
+---
+
+<li class:list={['timeline-item', `timeline-item--${type}`, { 'timeline-item--current': isCurrent, 'timeline-item--featured': featured }]}>
+  <div class="timeline-item__date">
+    <p class="timeline-item__date-range">
+      {dateLabel ? (
+        <>
+          <time datetime={dateTimeValue(startDate)}>{dateLabel}</time>
+          {endDate && <time class="sr-only" datetime={dateTimeValue(endDate)}>{formatDate(endDate)}</time>}
+        </>
+      ) : (
+        <>
+          <time datetime={dateTimeValue(startDate)}>{formatDate(startDate)}</time>
+          <span aria-hidden="true">-</span>
+          {isCurrent ? (
+            <span>Present</span>
+          ) : endDate ? (
+            <time datetime={dateTimeValue(endDate)}>{formatDate(endDate)}</time>
+          ) : (
+            <span class="sr-only">No end date</span>
+          )}
+        </>
+      )}
+    </p>
+    {location && <p class="timeline-item__location">{location}</p>}
+  </div>
+
+  <div class="timeline-item__marker" aria-hidden="true">
+    <span class="timeline-item__dot"></span>
+  </div>
+
+  <article class="timeline-item__content card">
+    <div class="timeline-item__eyebrow">
+      <span class="timeline-item__badge">{typeLabel}</span>
+      {isCurrent && <span class="timeline-item__badge timeline-item__badge--current">Current</span>}
+    </div>
+
+    <header class="timeline-item__header">
+      <h2 class="timeline-item__title">{title}</h2>
+      <p class="timeline-item__organization">{organization}</p>
+      <p class="timeline-item__role">{role}</p>
+    </header>
+
+    <p class="timeline-item__description">{description}</p>
+
+    {highlight && (
+      <p class="timeline-item__highlight">
+        <span>Focus</span>
+        {highlight}
+      </p>
+    )}
+
+    {responsibilities && responsibilities.length > 0 && (
+      <section class="timeline-item__section" aria-labelledby={`${entry.slug}-responsibilities`}>
+        <h3 id={`${entry.slug}-responsibilities`}>Key Responsibilities</h3>
+        <ul>
+          {responsibilities.map((responsibility) => (
+            <li>{responsibility}</li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {achievements && achievements.length > 0 && (
+      <section class="timeline-item__section" aria-labelledby={`${entry.slug}-achievements`}>
+        <h3 id={`${entry.slug}-achievements`}>Notable Achievements</h3>
+        <ul>
+          {achievements.map((achievement) => (
+            <li>{achievement}</li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {technologies && technologies.length > 0 && (
+      <div class="timeline-item__technologies" aria-label="Technologies and standards">
+        <div class="tags">
+          {technologies.map((technology) => (
+            <span class="tag">{technology}</span>
+          ))}
+        </div>
+      </div>
+    )}
+  </article>
+</li>

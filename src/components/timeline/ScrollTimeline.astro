@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import TimelineItem from './TimelineItem.astro';
+
+interface Props {
+  entries: CollectionEntry<'timeline'>[];
+}
+
+const { entries } = Astro.props;
+---
+
+<section class="scroll-timeline" aria-labelledby="timeline-heading" data-scroll-timeline>
+  <div class="scroll-timeline__rail" aria-hidden="true">
+    <div class="scroll-timeline__progress"></div>
+  </div>
+
+  <ol class="scroll-timeline__list">
+    {entries.map((entry) => (
+      <TimelineItem entry={entry} />
+    ))}
+  </ol>
+</section>
+
+<script>
+  import '../../scripts/timeline-progress';
+</script>

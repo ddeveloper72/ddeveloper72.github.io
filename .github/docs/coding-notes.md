@@ -31,10 +31,15 @@ It is not a progress journal. Progress updates belong in `docs/journal.md`.
 - Prefer semantic layout sections.
 - Use calm, professional colours.
 - Ensure visible keyboard focus states.
+- Timeline-specific styles live in `src/styles/_timeline.scss` and are imported through `src/styles/global.scss`.
+- The timeline uses a muted rail plus a green progress rail driven by the `--timeline-progress` CSS custom property.
+- Timeline polish should stay calm and healthcare-professional: restrained shadows, readable dates, visible text labels, and subtle accent colour only.
 
 ## File Organisation Notes
 
 - Reusable UI components go in `src/components/`.
+- Timeline UI components are grouped under `src/components/timeline/`.
+- Small client-side enhancements live in `src/scripts/`; `src/scripts/timeline-progress.ts` owns the timeline scroll-progress calculation.
 - Route pages go in `src/pages/`.
 - Shared layouts go in `src/layouts/`.
 - Content collections go in `src/content/`.
@@ -58,6 +63,29 @@ It is not a progress journal. Progress updates belong in `docs/journal.md`.
 - Ensure keyboard focus is visible.
 - Use descriptive link text.
 - Test mobile navigation.
+- Timeline entries use ordered-list semantics and keep milestone details server-rendered for static-first accessibility.
+- The timeline remains readable if JavaScript fails because the muted rail, dots, dates, and content are server-rendered.
+
+## Timeline Scroll Progress
+
+- `ScrollTimeline.astro` adds `data-scroll-timeline`, a muted rail, and a green progress rail.
+- `timeline-progress.ts` calculates progress from the timeline bounding rectangle and viewport height.
+- The script batches scroll and resize work with `requestAnimationFrame`.
+- Progress is clamped between `0` and `100` before writing `--timeline-progress` on the timeline wrapper.
+- CSS uses `height: var(--timeline-progress)` for the green rail.
+- `prefers-reduced-motion: reduce` disables the rail height transition while preserving the progress state.
+- Desktop and mobile share the same script; CSS repositions the rail for the wider date/rail/content layout.
+- Timeline hover lift is decorative only and is disabled under reduced-motion; no content depends on hover.
+- Optional timeline schema fields currently include `dateLabel`, `highlight`, and `featured`.
+- Use `dateLabel` only for broad or editorial date display where the underlying `startDate`/`endDate` still preserve sortability.
+- Use `highlight` for short emphasis text derived from existing facts; do not invent new claims for visual polish.
+- Desktop timeline rows use an explicit three-column grid: date column, narrow marker/rail column, and flexible content column.
+- The rail position is calculated from the same timeline column variables used by `.timeline-item`, so the progress rail stays independent from card width.
+- Timeline content cards must stay in the third grid column at `width: 100%` with a readable max width; do not place cards inside the marker/rail column.
+- At large desktop widths, timeline entries use a more editorial treatment: large date text on the left, fixed centre rail, and broad content panels on the right rather than boxed narrow cards.
+- The editorial three-column timeline layout starts at the `xl` breakpoint; tablet and narrower desktop widths keep the readable left-rail/content layout to avoid card squeeze when DevTools or split panes reduce viewport width.
+- In the `xl` timeline layout, the content track uses `minmax(38rem, 1fr)` and the date track is kept compact so title/body text cannot collapse into a word-per-line column.
+- Final QA expectation: validate timeline changes with `npm run build`, generated static HTML, timeline-specific SCSS/script review, and manual browser review when available because this repo does not include screenshot automation tooling.
 
 ## Future Ideas
 

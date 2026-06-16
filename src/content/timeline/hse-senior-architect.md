@@ -5,7 +5,9 @@ role: "Technical Architect - Healthcare Interoperability"
 startDate: 2023-11-22
 location: "Dublin, Ireland"
 description: "Leading technical architecture for Ireland's MyHealth@EU National Contact Point and European Health Data Space initiatives, establishing FHIR-based cross-border healthcare data exchange"
+highlight: "MyHealth@EU and European Health Data Space architecture"
 type: "work"
+featured: true
 responsibilities:
   - "Technical architecture lead for Ireland's MyHealth@EU National Contact Point (NCP) for eHealth"
   - "Contributing to Xt-EHR Project (European Health Data Space) across WP6.1, 6.2, 7.1, and 7.2"

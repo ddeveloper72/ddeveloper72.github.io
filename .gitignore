@@ -27,3 +27,4 @@ yarn-error.log*
 
 # AI rules (if needed)
 .github\instructions\codacy.instructions.md
+.github/prompts/

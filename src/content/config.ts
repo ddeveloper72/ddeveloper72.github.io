@@ -45,12 +45,15 @@ const timeline = defineCollection({
     role: z.string(),
     startDate: z.coerce.date(),
     endDate: z.coerce.date().optional(),
+    dateLabel: z.string().optional(),
     location: z.string().optional(),
     description: z.string(),
+    highlight: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
     achievements: z.array(z.string()).optional(),
     technologies: z.array(z.string()).optional(),
     type: z.enum(['work', 'education', 'certification', 'project']).default('work'),
+    featured: z.boolean().optional(),
     order: z.number().optional()
   })
 });
