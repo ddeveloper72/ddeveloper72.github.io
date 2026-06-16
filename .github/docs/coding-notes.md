@@ -87,6 +87,14 @@ It is not a progress journal. Progress updates belong in `docs/journal.md`.
 - In the `xl` timeline layout, the content track uses `minmax(38rem, 1fr)` and the date track is kept compact so title/body text cannot collapse into a word-per-line column.
 - Final QA expectation: validate timeline changes with `npm run build`, generated static HTML, timeline-specific SCSS/script review, and manual browser review when available because this repo does not include screenshot automation tooling.
 
+## Sitewide Design Consistency Direction
+
+- Reuse the timeline design language sitewide through shared primitives, not page-by-page decorative overrides.
+- Candidate shared patterns: page intro blocks, section eyebrow labels, calmer card hierarchy, badge/tag treatment, status labels, and CTA row utilities.
+- Prioritise replacing existing inline styles in listing pages and CTA blocks with reusable SCSS classes.
+- Keep the timeline-specific rail/progress pattern scoped to timeline-like content; do not apply it as a general decoration.
+- Apply visual upgrades in stages: first shared partials/components, then high-traffic pages, then detail pages.
+
 ## Future Ideas
 
 - Add GitHub API integration later.

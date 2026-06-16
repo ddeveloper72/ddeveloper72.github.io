@@ -1467,3 +1467,89 @@ test: complete timeline qa pass
 - Document final QA checks and known limitations
 - Confirm deployment assumptions remain unchanged
 ```
+
+## 2026-06-16 - Sitewide Design Consistency Audit
+
+**Status**: Complete - Audit and staged implementation plan prepared
+
+### Audit Findings
+
+The enhanced timeline now has a stronger design language than several older pages. The biggest consistency gap is not colour; it is hierarchy, spacing, and reusable structure.
+
+Pages that now feel visually weaker than the timeline:
+
+- **Home page** - Strong content, but the hero and section transitions feel plainer than the timeline header. It also uses inline styles for CTA alignment and an alternate-background section.
+- **Projects page** - Useful grouping, but section headings and cards are still generic. Archived projects use inline styling on `summary` and grid spacing.
+- **Case Studies page** - Cards are functional but visually flatter, with inline spacing on muted text and tags.
+- **About page** - Content is strong but reads as a long document. It needs page intro, section rhythm, and CTA styling consistency.
+- **Contact page and Blog/Notes page** - Need review in the next implementation stage for intro/header alignment and card/list styling.
+
+Reusable components or patterns to update:
+
+- Shared cards in `src/styles/_cards.scss`
+- Shared buttons in `src/styles/_buttons.scss`
+- Badge/tag/status patterns in `src/styles/_cards.scss` or a new badge partial
+- Section/page headers in `src/styles/_layout.scss` or a new `_sections.scss`
+- CTA row utilities to replace one-off inline styles
+- Optional small Astro components later, such as `PageIntro.astro`, if repetition grows
+
+SCSS partials to update or create:
+
+- Update `_cards.scss` for premium card hierarchy and tag consistency.
+- Update `_buttons.scss` only if CTA spacing/focus states need alignment.
+- Update `_layout.scss` for section/page intro utilities.
+- Consider creating `_sections.scss` for page intro, eyebrow labels, alternate bands, and CTA rows.
+- Keep `_timeline.scss` scoped to the timeline implementation.
+
+Design tokens to reuse from timeline work:
+
+- `--color-accent` and `--color-accent-dark` for subtle emphasis.
+- `--color-border-light`, `--color-background-alt`, and `--shadow-sm`/`--shadow-lg` for restrained depth.
+- Existing spacing tokens, especially `--space-xl`, `--space-2xl`, and `--space-3xl`.
+- Existing typography scale, with careful use of larger display text only for page headers and timeline dates.
+
+### Prioritised Changes
+
+1. **Remove inline styles from listing and CTA areas** - Replace with reusable classes for CTA rows, muted text spacing, alternate sections, archived summaries, and grid spacing.
+2. **Create consistent page intro treatment** - Bring Home, Projects, Case Studies, About, Blog, and Contact closer to the timeline header style without making every page identical.
+3. **Improve shared cards and badges** - Make project/case-study cards feel closer to the refined timeline cards while preserving their scan-friendly grid layout.
+4. **Apply to listing pages first** - Projects and Case Studies will benefit most quickly because they depend heavily on cards and tags.
+5. **Then update Home and About** - Home needs a refined hero/section rhythm; About needs better content grouping and CTA presentation.
+
+### Staged Implementation Plan
+
+**Stage 1: Shared style foundations**
+
+- Add or update shared classes for page intros, eyebrow labels, CTA rows, alternate sections, archived/details blocks, and utility spacing.
+- Remove obvious inline styles from Home, Projects, Case Studies, About, and detail page CTA areas where safe.
+- Update docs and run `npm run build`.
+
+**Stage 2: Cards and badges**
+
+- Refine `.card`, `.card-header`, `.card-title`, `.tags`, `.tag`, and `.status` patterns.
+- Ensure tag wrapping remains robust and focus states remain visible.
+- Keep changes compatible with existing card usage across Home, Projects, Case Studies, Blog, and detail pages.
+- Update docs and run `npm run build`.
+
+**Stage 3: Page-specific alignment**
+
+- Apply shared intro/section/card patterns to Projects, Case Studies, Blog/Notes, Contact, Home, and About.
+- Avoid large redesigns; improve rhythm, hierarchy, and consistency.
+- Update docs and run `npm run build`.
+
+**Stage 4: QA pass**
+
+- Run production build.
+- Review generated pages for layout regressions.
+- Manually inspect mobile/tablet/desktop in browser where possible.
+- Confirm GitHub Pages assumptions remain unchanged.
+
+### Suggested Commit Message
+
+```
+docs: audit sitewide design consistency after timeline refresh
+
+- Identify pages and shared patterns needing timeline-aligned polish
+- Prioritise shared SCSS foundations, cards, badges, and page intros
+- Document staged implementation plan for lightweight Astro-first updates
+```
