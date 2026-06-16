@@ -1607,3 +1607,85 @@ docs: refine sitewide design rollout priorities
 - Capture evidence-wall and editorial case-study direction
 - Define shared design system patterns to extract from timeline work
 ```
+
+## 2026-06-16 - Homepage Design System Alignment
+
+**Status**: Complete - Homepage brought closer to the refreshed timeline design language
+
+### What Was Done
+
+- Added shared section and card utilities in `src/styles/_layout.scss` and `src/styles/_cards.scss`.
+- Created reusable patterns for alternate sections, page eyebrows, split section headers, CTA rows, evidence grids, evidence cards, card kickers, and improved badges/status labels.
+- Reworked the homepage hero into a stronger two-column layout with a standards-to-systems interoperability visual panel.
+- Updated featured projects into evidence-style cards with clearer status, tags, and a short "why it matters" line.
+- Updated the expertise section to use the same card hierarchy and green accent treatment.
+- Updated featured case studies to feel more editorial and better aligned with the timeline's story-driven presentation.
+- Removed homepage inline styles for CTA alignment and alternate section background.
+
+### Technical Decisions
+
+1. **Shared first** - The homepage changes use reusable classes so projects, case studies, about, notes, and contact can adopt the same design language later.
+2. **CSS-native visual** - The hero visual uses semantic HTML and scoped CSS rather than adding an image dependency.
+3. **Evidence framing** - Project and case-study cards now present work as proof of architecture decisions, not just a generic listing.
+4. **Responsive protection** - Evidence grids use `minmax(0, 1fr)` and wrapping badges to reduce the risk of narrow text columns and horizontal overflow.
+5. **Motion restraint** - Card hover lift respects `prefers-reduced-motion`.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated 24 pages, including `/index.html`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+style: align homepage with refreshed timeline design
+
+- Add shared page intro, section, evidence grid, and card utilities
+- Rework homepage hero with an interoperability visual panel
+- Present featured projects and case studies as evidence cards
+- Remove homepage inline layout styles
+```
+
+## 2026-06-16 - Projects Evidence Wall
+
+**Status**: Complete - Projects listing reorganised around technical evidence themes
+
+### What Was Done
+
+- Reworked `src/pages/projects/index.astro` from status-driven sections into a curated evidence wall.
+- Added primary project grouping by:
+  - Healthcare Interoperability
+  - Architecture & API Prototypes
+  - Learning & Teaching Projects
+  - Applied Systems & Experiments
+- Kept status visible inside each project card rather than using it as the page's organising principle.
+- Reused the shared page intro, eyebrow, split section header, evidence grid, evidence card, card kicker, tag, and status patterns.
+- Removed inline styles from archived project controls and grid spacing.
+- Added a simple categorisation helper so projects land in one primary section, with teaching projects prioritised when metadata includes training or introductory content.
+
+### Technical Decisions
+
+1. **Evidence over repository list** - The page now tells a technical architecture story rather than listing projects by lifecycle state.
+2. **One primary bucket** - Projects are assigned to one section to avoid duplicated cards and confusing scan paths.
+3. **Status still visible** - Active, in-progress, completed, and archived states remain available on the cards.
+4. **Shared styling** - No new visual system was invented for Projects; it reuses the homepage/timeline-aligned primitives.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated 24 pages, including `/projects/index.html`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+style: turn projects page into curated evidence wall
+
+- Group projects by technical evidence themes instead of status
+- Reuse shared page intro, section, grid, and evidence-card patterns
+- Keep project status and case-study labels visible inside cards
+- Remove inline archived-project layout styles
+```

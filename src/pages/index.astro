@@ -20,35 +20,63 @@ const featuredCaseStudies = allCaseStudies
 <BaseLayout title="Home">
   <div class="hero section">
     <div class="container">
-      <h1 class="hero-title">Duncan Falconer</h1>
-      <p class="hero-subtitle lead">
-        Technical Architect specializing in healthcare interoperability, 
-        HL7 FHIR, and standards-based healthcare solutions
-      </p>
-      <p class="hero-description">
-        I design, build, and explain interoperable healthcare systems using modern 
-        APIs, international standards, and practical delivery approaches.
-      </p>
-      <div class="btn-group">
-        <a href="/projects" class="btn btn-primary">View Projects</a>
-        <a href="/about" class="btn btn-outline">About Me</a>
+      <div class="hero-grid">
+        <div class="page-intro">
+          <p class="page-eyebrow">Healthcare interoperability</p>
+          <h1 class="hero-title">Duncan Falconer</h1>
+          <p class="hero-subtitle lead">
+            Technical Architect specializing in healthcare interoperability, 
+            HL7 FHIR, and standards-based healthcare solutions
+          </p>
+          <p class="hero-description">
+            I design, build, and explain interoperable healthcare systems using modern 
+            APIs, international standards, and practical delivery approaches.
+          </p>
+          <div class="btn-group">
+            <a href="/projects" class="btn btn-primary">View Projects</a>
+            <a href="/timeline" class="btn btn-outline">Professional Timeline</a>
+          </div>
+        </div>
+
+        <aside class="hero-visual" aria-label="Standards to systems visual summary">
+          <div class="hero-visual__header">
+            <span>Standards</span>
+            <span>Systems</span>
+          </div>
+          <div class="hero-network" aria-hidden="true">
+            <span class="hero-node hero-node--fhir">FHIR</span>
+            <span class="hero-node hero-node--cda">CDA</span>
+            <span class="hero-node hero-node--hl7">HL7 v2</span>
+            <span class="hero-node hero-node--api">API</span>
+            <span class="hero-node hero-node--ncp">NCP</span>
+          </div>
+          <div class="hero-visual__footer">
+            <span>Patient summary</span>
+            <span>Validation</span>
+            <span>Cross-border exchange</span>
+          </div>
+        </aside>
       </div>
     </div>
   </div>
 
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <h2>Featured Projects</h2>
+      <div class="section-header section-header--split">
+        <div>
+          <p class="page-eyebrow">Evidence wall</p>
+          <h2>Featured Projects</h2>
+        </div>
         <p class="lead">
-          Recent work in healthcare interoperability and technical architecture
+          Recent work that turns standards, prototypes, and delivery lessons into practical architecture evidence.
         </p>
       </div>
       
-      <div class="grid grid-auto-fit">
+      <div class="evidence-grid evidence-grid--3">
         {featuredProjects.map((project) => (
           <a href={`/projects/${project.slug}`} class="card-link">
-            <article class="card">
+            <article class="card evidence-card">
+              <span class="card-kicker">Project</span>
               <div class="card-header">
                 <h3 class="card-title">{project.data.title}</h3>
                 <div class="status">
@@ -64,25 +92,28 @@ const featuredCaseStudies = allCaseStudies
                   ))}
                 </div>
               </div>
+              <div class="evidence-card__meta">Why it matters: practical proof of architecture and implementation decisions.</div>
             </article>
           </a>
         ))}
       </div>
       
-      <div style="text-align: center; margin-top: var(--space-xl);">
+      <div class="section-actions">
         <a href="/projects" class="btn btn-outline">View All Projects</a>
       </div>
     </div>
   </section>
 
-  <section class="section" style="background-color: var(--color-background-alt);">
+  <section class="section section-alt">
     <div class="container">
       <div class="section-header">
+        <p class="page-eyebrow">Core practice</p>
         <h2>Expertise</h2>
       </div>
       
-      <div class="grid grid-3">
-        <div class="card">
+      <div class="evidence-grid evidence-grid--3">
+        <div class="card feature-card">
+          <span class="card-kicker">Standards</span>
           <h3>Healthcare Interoperability</h3>
           <p>
             Deep expertise in HL7 FHIR, CDA, and cross-border healthcare data exchange. 
@@ -90,7 +121,8 @@ const featuredCaseStudies = allCaseStudies
           </p>
         </div>
         
-        <div class="card">
+        <div class="card feature-card">
+          <span class="card-kicker">Architecture</span>
           <h3>API Architecture</h3>
           <p>
             Design and delivery of RESTful APIs, integration platforms, and developer 
@@ -98,7 +130,8 @@ const featuredCaseStudies = allCaseStudies
           </p>
         </div>
         
-        <div class="card">
+        <div class="card feature-card">
+          <span class="card-kicker">Delivery</span>
           <h3>Technical Delivery</h3>
           <p>
             Python, Django, Flask, Angular, and TypeScript. Building healthcare 
@@ -112,17 +145,21 @@ const featuredCaseStudies = allCaseStudies
   {featuredCaseStudies.length > 0 && (
     <section class="section">
       <div class="container">
-        <div class="section-header">
-          <h2>Case Studies</h2>
+        <div class="section-header section-header--split">
+          <div>
+            <p class="page-eyebrow">Technical stories</p>
+            <h2>Case Studies</h2>
+          </div>
           <p class="lead">
-            Detailed explorations of technical challenges and solutions
+            Detailed explorations of technical challenges, design choices, standards, and implementation outcomes.
           </p>
         </div>
         
-        <div class="grid grid-2">
+        <div class="evidence-grid evidence-grid--2">
           {featuredCaseStudies.map((study) => (
             <a href={`/case-studies/${study.slug}`} class="card-link">
-              <article class="card">
+              <article class="card evidence-card">
+                <span class="card-kicker">Case study</span>
                 <div class="card-header">
                   <h3 class="card-title">{study.data.title}</h3>
                 </div>
@@ -134,12 +171,13 @@ const featuredCaseStudies = allCaseStudies
                     ))}
                   </div>
                 </div>
+                <div class="evidence-card__meta">What this demonstrates: structured technical reasoning from problem to outcome.</div>
               </article>
             </a>
           ))}
         </div>
         
-        <div style="text-align: center; margin-top: var(--space-xl);">
+        <div class="section-actions">
           <a href="/case-studies" class="btn btn-outline">View All Case Studies</a>
         </div>
       </div>
@@ -152,18 +190,31 @@ const featuredCaseStudies = allCaseStudies
   
   .hero {
     padding: var(--space-2xl) 0;
+    background:
+      linear-gradient(180deg, rgba(248, 249, 250, 0.86), rgba(255, 255, 255, 0) 72%);
     
     @include media-md {
       padding: var(--space-3xl) 0 4rem;
+    }
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: center;
+
+    @include media-lg {
+      grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.82fr);
     }
   }
   
   .hero-title {
     font-size: var(--font-size-4xl);
     margin-bottom: var(--space-md);
+    line-height: var(--line-height-tight);
     
     @include media-md {
-      font-size: 3rem;
+      font-size: 3.5rem;
     }
   }
   
@@ -184,5 +235,137 @@ const featuredCaseStudies = allCaseStudies
     margin-bottom: var(--space-xl);
     max-width: 700px;
     line-height: var(--line-height-relaxed);
+  }
+
+  .hero-visual {
+    position: relative;
+    min-height: 25rem;
+    padding: var(--space-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-md);
+    background:
+      linear-gradient(90deg, rgba(0, 168, 150, 0.08) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(0, 102, 204, 0.08) 1px, transparent 1px),
+      var(--color-background);
+    background-size: 3rem 3rem;
+    box-shadow: var(--shadow-lg);
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 26% 14%;
+      border-top: 2px solid rgba(0, 168, 150, 0.55);
+      transform: rotate(-14deg);
+      transform-origin: center;
+    }
+
+    &::after {
+      inset: 36% 20%;
+      border-color: rgba(0, 102, 204, 0.34);
+      transform: rotate(19deg);
+    }
+  }
+
+  .hero-visual__header,
+  .hero-visual__footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: space-between;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .hero-visual__footer {
+    position: absolute;
+    right: var(--space-lg);
+    bottom: var(--space-lg);
+    left: var(--space-lg);
+    justify-content: flex-start;
+
+    span {
+      padding: 0.25rem 0.5rem;
+      border: 1px solid rgba(0, 168, 150, 0.2);
+      border-radius: var(--border-radius-sm);
+      background-color: rgba(255, 255, 255, 0.88);
+      color: var(--color-accent-dark);
+    }
+  }
+
+  .hero-network {
+    position: absolute;
+    inset: var(--space-xl);
+  }
+
+  .hero-node {
+    position: absolute;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.75rem;
+    min-height: 4.75rem;
+    padding: var(--space-xs);
+    border: 2px solid var(--color-background);
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero-node--fhir {
+    top: 16%;
+    left: 12%;
+    background-color: var(--color-accent);
+  }
+
+  .hero-node--cda {
+    top: 48%;
+    left: 6%;
+    background-color: var(--color-primary-dark);
+  }
+
+  .hero-node--hl7 {
+    top: 34%;
+    left: 40%;
+    min-width: 5.5rem;
+    min-height: 5.5rem;
+  }
+
+  .hero-node--api {
+    top: 14%;
+    right: 10%;
+    background-color: var(--color-accent-dark);
+  }
+
+  .hero-node--ncp {
+    right: 16%;
+    bottom: 20%;
+    background-color: var(--color-primary-light);
+  }
+
+  @media (max-width: 520px) {
+    .hero-visual {
+      min-height: 22rem;
+    }
+
+    .hero-node {
+      min-width: 4rem;
+      min-height: 4rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-node--hl7 {
+      min-width: 4.75rem;
+      min-height: 4.75rem;
+    }
   }
 </style>

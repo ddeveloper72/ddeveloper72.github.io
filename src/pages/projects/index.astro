@@ -12,9 +12,82 @@ const sortedProjects = allProjects.sort((a, b) => {
   return b.data.publishDate.getTime() - a.data.publishDate.getTime();
 });
 
-// Group by status
-const activeProjects = sortedProjects.filter(p => p.data.status === 'active' || p.data.status === 'in-progress');
-const completedProjects = sortedProjects.filter(p => p.data.status === 'completed');
+const projectMatches = (project: typeof sortedProjects[number], terms: string[]) => {
+  const searchable = [
+    project.data.title,
+    project.data.description,
+    ...project.data.tags,
+    ...project.data.technologies,
+  ].join(' ').toLowerCase();
+
+  return terms.some(term => searchable.includes(term.toLowerCase()));
+};
+
+const projectCategory = (project: typeof sortedProjects[number]) => {
+  if (projectMatches(project, ['education', 'training', 'json', 'xml intro'])) {
+    return 'learning';
+  }
+
+  if (projectMatches(project, [
+    'fhir',
+    'cda',
+    'hl7',
+    'healthcare',
+    'interoperability',
+    'myhealth',
+    'ehds',
+    'epsos',
+    'imaging',
+  ])) {
+    return 'healthcare';
+  }
+
+  if (projectMatches(project, [
+    'django',
+    'flask',
+    'rest api',
+    'backend',
+    'api',
+    'monitoring',
+    'azure',
+    'postgresql',
+    'heroku',
+    'pdf',
+    'base64',
+  ])) {
+    return 'architecture';
+  }
+
+  return 'applied';
+};
+
+const projectSections = [
+  {
+    title: 'Healthcare Interoperability',
+    eyebrow: 'Standards to systems',
+    description: 'FHIR, CDA, HL7 v2, EHDS, MyHealth@EU, validation, and patient summary work.',
+    projects: sortedProjects.filter(project => projectCategory(project) === 'healthcare'),
+  },
+  {
+    title: 'Architecture & API Prototypes',
+    eyebrow: 'Implementation proof',
+    description: 'Backend services, Django/Flask prototypes, API design, deployment, monitoring, and integration experiments.',
+    projects: sortedProjects.filter(project => projectCategory(project) === 'architecture'),
+  },
+  {
+    title: 'Learning & Teaching Projects',
+    eyebrow: 'Shared understanding',
+    description: 'Small, practical tools that make standards, formats, and implementation concepts easier to explain.',
+    projects: sortedProjects.filter(project => projectCategory(project) === 'learning'),
+  },
+  {
+    title: 'Applied Systems & Experiments',
+    eyebrow: 'Broader delivery',
+    description: 'Adjacent technical builds that demonstrate product thinking, sensing, dashboards, and real-world application design.',
+    projects: sortedProjects.filter(project => projectCategory(project) === 'applied'),
+  },
+].filter(section => section.projects.length > 0);
+
 const archivedProjects = sortedProjects.filter(p => p.data.status === 'archived');
 ---
 
@@ -24,19 +97,30 @@ const archivedProjects = sortedProjects.filter(p => p.data.status === 'archived'
 >
   <div class="section">
     <div class="container">
-      <h1>Projects</h1>
-      <p class="lead">
-        Healthcare interoperability implementations, APIs, educational tools, 
-        and standards-based solutions
-      </p>
+      <div class="page-intro projects-intro">
+        <p class="page-eyebrow">Evidence wall</p>
+        <h1>Projects</h1>
+        <p class="lead">
+          Healthcare interoperability implementations, APIs, educational tools, 
+          and standards-based solutions grouped as evidence of technical architecture practice.
+        </p>
+      </div>
       
-      {activeProjects.length > 0 && (
+      {projectSections.map((section) => (
         <section class="project-section">
-          <h2>Active Projects</h2>
-          <div class="grid grid-auto-fit">
-            {activeProjects.map((project) => (
+          <div class="section-header section-header--split">
+            <div>
+              <p class="page-eyebrow">{section.eyebrow}</p>
+              <h2>{section.title}</h2>
+            </div>
+            <p class="lead">{section.description}</p>
+          </div>
+
+          <div class="evidence-grid evidence-grid--3">
+            {section.projects.map((project) => (
               <a href={`/projects/${project.slug}`} class="card-link">
-                <article class="card">
+                <article class="card evidence-card project-card">
+                  <span class="card-kicker">Project</span>
                   <div class="card-header">
                     <h3 class="card-title">{project.data.title}</h3>
                     <div class="status">
@@ -53,8 +137,8 @@ const archivedProjects = sortedProjects.filter(p => p.data.status === 'archived'
                     </div>
                   </div>
                   <div class="card-footer">
-                    <div class="flex items-center justify-between">
-                      <span>View project →</span>
+                    <div class="project-card__footer">
+                      <span>View project</span>
                       {project.data.caseStudy && (
                         <span class="tag tag-accent">Case Study</span>
                       )}
@@ -65,56 +149,19 @@ const archivedProjects = sortedProjects.filter(p => p.data.status === 'archived'
             ))}
           </div>
         </section>
-      )}
-      
-      {completedProjects.length > 0 && (
-        <section class="project-section">
-          <h2>Completed Projects</h2>
-          <div class="grid grid-auto-fit">
-            {completedProjects.map((project) => (
-              <a href={`/projects/${project.slug}`} class="card-link">
-                <article class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">{project.data.title}</h3>
-                    <div class="status">
-                      <span class={`status-dot ${project.data.status}`}></span>
-                      <span>{project.data.status}</span>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <p>{project.data.description}</p>
-                    <div class="tags">
-                      {project.data.tags.map((tag) => (
-                        <span class="tag">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div class="card-footer">
-                    <div class="flex items-center justify-between">
-                      <span>View project →</span>
-                      {project.data.caseStudy && (
-                        <span class="tag tag-accent">Case Study</span>
-                      )}
-                    </div>
-                  </div>
-                </article>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
+      ))}
       
       {archivedProjects.length > 0 && (
         <section class="project-section">
-          <h2>Archived Projects</h2>
           <details class="archived-details">
-            <summary style="cursor: pointer; padding: var(--space-md); background: var(--color-background-alt); border-radius: var(--border-radius-md);">
+            <summary>
               Show archived projects ({archivedProjects.length})
             </summary>
-            <div class="grid grid-auto-fit" style="margin-top: var(--space-lg);">
+            <div class="evidence-grid evidence-grid--3 archived-grid">
               {archivedProjects.map((project) => (
                 <a href={`/projects/${project.slug}`} class="card-link">
-                  <article class="card">
+                  <article class="card evidence-card project-card">
+                    <span class="card-kicker">Archived</span>
                     <div class="card-header">
                       <h3 class="card-title">{project.data.title}</h3>
                     </div>
@@ -134,14 +181,43 @@ const archivedProjects = sortedProjects.filter(p => p.data.status === 'archived'
 
 <style lang="scss">
   @import '../../styles/variables';
+
+  .projects-intro {
+    margin-bottom: var(--space-3xl);
+  }
   
   .project-section {
     margin-bottom: var(--space-3xl);
-    
-    h2 {
-      margin-bottom: var(--space-xl);
-      padding-bottom: var(--space-md);
-      border-bottom: 2px solid var(--color-border);
-    }
+  }
+
+  .project-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  .archived-details {
+    border-top: 1px solid var(--color-border-light);
+    padding-top: var(--space-xl);
+  }
+
+  .archived-details summary {
+    cursor: pointer;
+    padding: var(--space-md);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-background-alt);
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .archived-details summary:focus-visible {
+    @include focus-ring;
+  }
+
+  .archived-grid {
+    margin-top: var(--space-lg);
   }
 </style>
