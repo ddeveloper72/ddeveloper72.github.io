@@ -1553,3 +1553,57 @@ docs: audit sitewide design consistency after timeline refresh
 - Prioritise shared SCSS foundations, cards, badges, and page intros
 - Document staged implementation plan for lightweight Astro-first updates
 ```
+
+## 2026-06-16 - Sitewide Design Priority Refinement
+
+**Status**: Complete - Next design implementation priorities clarified
+
+### Revised Priorities
+
+1. **Homepage first**
+
+The homepage should inherit the same premium feel as the timeline. It should become the front door to the refreshed design system, with a stronger hero, more intentional featured projects, improved expertise cards, a better case study preview, and cleaner calls to action. A future visual panel could use an abstract interoperability network, FHIR/CDA code motif, or standards-to-systems diagram.
+
+2. **Case Studies second**
+
+Case studies should feel like polished technical articles, not ordinary cards. The target pattern is a large intro block, challenge/approach/outcome summary, standards and technologies strip, key decisions, diagrams or screenshots where useful, and a clear "what this demonstrates" section.
+
+3. **Projects page**
+
+Projects should shift from a generic repo list to a curated evidence wall. Suggested groupings: Healthcare Interoperability, Architecture & API Prototypes, Learning / Teaching Projects, and AI-Assisted Development. Cards should highlight the title, outcome-focused summary, technology badges, status, why it matters, and links to GitHub or case studies.
+
+4. **About page**
+
+The About page should become the human companion to the timeline. It should explain why healthcare interoperability matters, how standards/software/delivery connect, why prototypes are useful, and how documentation, governance, and stakeholder work fit together. Avoid turning it into a long CV.
+
+5. **Blog / Notes page**
+
+Only prioritise this if it will be actively used. If the section remains practical and documentation-led, rename it to Notes, Technical Notes, Interoperability Notes, or Field Notes to better match the site voice.
+
+6. **Contact page**
+
+Keep Contact simple but finished. Add a concise positioning statement around healthcare interoperability, FHIR/CDA implementation, technical architecture, patient access, and practical standards-based delivery. Keep links clean, primarily GitHub and LinkedIn.
+
+### Shared Design System Work
+
+Extract the timeline improvements into shared patterns:
+
+- Premium section spacing
+- Large page headings
+- Reusable intro panels
+- Consistent card styling
+- Consistent badge styling
+- Green accent treatment
+- Muted border and rail details
+- Responsive grid behaviour
+- Visible focus and restrained hover states
+
+### Suggested Commit Message
+
+```
+docs: refine sitewide design rollout priorities
+
+- Prioritise homepage, case studies, projects, about, notes, and contact
+- Capture evidence-wall and editorial case-study direction
+- Define shared design system patterns to extract from timeline work
+```

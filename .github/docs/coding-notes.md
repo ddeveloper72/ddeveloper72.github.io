@@ -94,6 +94,11 @@ It is not a progress journal. Progress updates belong in `docs/journal.md`.
 - Prioritise replacing existing inline styles in listing pages and CTA blocks with reusable SCSS classes.
 - Keep the timeline-specific rail/progress pattern scoped to timeline-like content; do not apply it as a general decoration.
 - Apply visual upgrades in stages: first shared partials/components, then high-traffic pages, then detail pages.
+- Next implementation priority is the homepage: hero, featured projects, expertise cards, case study preview, and calls to action should feel like the front door to the same premium system as the timeline.
+- Projects should become a curated evidence wall grouped by themes such as healthcare interoperability, architecture/API prototypes, learning/teaching projects, and AI-assisted development.
+- Case studies should become more editorial technical articles with challenge, approach, outcome, standards/technology strips, key decisions, and what the work demonstrates.
+- About should be the narrative companion to the timeline, explaining motivation, standards/software/delivery bridging, prototype practice, documentation, governance, and stakeholder work.
+- Consider renaming Blog to Notes, Technical Notes, Interoperability Notes, or Field Notes if the section remains practical and documentation-led rather than a conventional blog.
 
 ## Future Ideas
 
