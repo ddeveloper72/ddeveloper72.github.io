@@ -1689,3 +1689,45 @@ style: turn projects page into curated evidence wall
 - Keep project status and case-study labels visible inside cards
 - Remove inline archived-project layout styles
 ```
+
+## 2026-06-16 - NMPC And HSE CTS Project Entries
+
+**Status**: Complete - Two terminology and medicines catalogue project experiences added
+
+### What Was Done
+
+- Reviewed local repositories for `ddeveloper72/nmpc-testing-app` and `ddeveloper72/hse-cts-flask-client`.
+- Added `src/content/projects/nmpc-testing-app.md`.
+- Added `src/content/projects/hse-cts-flask-client.md`.
+- Grounded descriptions, technologies, dates, and feature summaries in the local README and project documentation from each repository.
+- Positioned both entries as healthcare interoperability and terminology-service evidence.
+
+### Project Summary
+
+**NMPC Testing Application**
+
+- Flask testing and integration platform for the Irish National Medicinal Product Catalogue API.
+- Covers read-only FHIR terminology operations, OAuth2, six-concept NMPC product model support, external mappings, hierarchy browsing, product comparison, API exploration, pytest, and Docker deployment readiness.
+
+**HSE CTS Flask Explorer**
+
+- Local Flask client for securely exploring the HSE Central Terminology Service FHIR API.
+- Covers SNOMED CT, LOINC, UCUM, CodeSystem browsing, ValueSet expansion, exact code lookup, UCUM search, and LOINC-backed observation-to-unit discovery.
+
+### Verification
+
+- Ran `npm run build`.
+- Astro check completed with 0 errors, 0 warnings, and 0 hints.
+- Astro build completed successfully and generated 26 pages.
+- Confirmed generated routes for `/projects/nmpc-testing-app/` and `/projects/hse-cts-flask-client/`.
+- Existing Sass `@import` deprecation warnings and Shiki language fallback warnings remain unrelated to this change.
+
+### Suggested Commit Message
+
+```
+content: add NMPC and HSE CTS project experiences
+
+- Add NMPC Testing Application project entry
+- Add HSE CTS Flask Explorer project entry
+- Document terminology, OAuth2, FHIR, Docker, and read-only API exploration work
+```

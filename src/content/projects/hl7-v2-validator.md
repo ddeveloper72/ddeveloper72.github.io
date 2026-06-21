@@ -1,8 +1,8 @@
 ---
-title: "Gazelle HL7 v2 Validator"
-description: "Web application for validating HL7 v2 Healthlink XML files using the Gazelle EVS API with auto-correction and PDF reporting"
+title: "HL7 v2 Message Validator and Auto-Corrector"
+description: "Web application for validating Healthlink HL7 v2 XML messages with Gazelle EVS, deterministic auto-correction, batch processing, and PDF reporting"
 tags: ["HL7 v2", "Healthcare", "Validation", "Integration", "Gazelle"]
-technologies: ["Python", "Flask", "Bootstrap", "Playwright", "Gazelle EVS API"]
+technologies: ["Python", "Flask", "Tailwind CSS", "ReportLab", "Azure SQL", "Microsoft Entra ID", "Gazelle EVS API"]
 repository: "https://github.com/ddeveloper72/HL7_v2_Message_Validator-Auto-Correct"
 demo: "https://hl7-v2-message-validator-a1efcbc737cd.herokuapp.com/"
 status: "active"
@@ -12,103 +12,105 @@ order: 5
 caseStudy: "hl7-v2-validator"
 ---
 
-A professional web application for validating HL7 v2 Healthlink XML files using the Gazelle EVS (External Validation Service) API, featuring intelligent auto-correction and comprehensive PDF reporting.
+A Flask web application for validating Healthlink HL7 v2 XML messages with the Gazelle EVS service, reviewing detailed validation results, and applying conservative, deterministic corrections to supported message errors.
+
+[Try the live application](https://hl7-v2-message-validator-a1efcbc737cd.herokuapp.com/) or [view the source on GitHub](https://github.com/ddeveloper72/HL7_v2_Message_Validator-Auto-Correct).
+
+![The HL7 validator's capability overview, showing validation, auto-correction, history, security, PDF reporting, and analytics](../../assets/images/projects/hl7-validator-capabilities.png)
+
+*The public application highlights the complete validation workflow and its production features.*
 
 ## Purpose
 
-HL7 v2 remains the backbone of healthcare integration worldwide. This validator helps developers and integration engineers quickly validate message conformance, identify issues, and automatically correct common errors during development and troubleshooting.
+HL7 v2 remains a core part of healthcare integration. This application helps developers and integration engineers validate message conformance, understand errors and warnings, and correct common issues during development and troubleshooting.
 
 ## Key Features
 
-**Core Validation**
-- Upload HL7 v2 XML files via drag-and-drop or file browser
-- Integration with Gazelle EVS API for standards-compliant validation
-- Real-time validation feedback with detailed error analysis
-- Support for multiple HL7 v2 versions and profiles
+**Validation and batch processing**
+- Upload one or more `.xml` or `.txt` HL7 v2 messages
+- Validate against configured Gazelle EVS profiles
+- View validation status, message type, errors, warnings, and the Gazelle report link
+- Track upload and validation progress for each file in the browser
+- Revalidate corrected messages iteratively up to a configurable limit
 
-**Intelligent Auto-Correction**
-- Automatic BOM (Byte Order Mark) removal
-- XML declaration insertion and correction
-- HL7 table code fixes for common errors
-- Required field population for empty elements
-- One-click correction application
+**Deterministic auto-correction**
+- Repair supported encoding and structural issues
+- Apply data-driven HL7 code-table corrections
+- Populate supported required fields
+- Stop when the message passes, no further supported correction is available, or the iteration limit is reached
+- Download the corrected message for review
 
-**Professional Reporting**
-- Comprehensive validation reports with error categorization
-- PDF export using Playwright (headless browser rendering)
-- Emoji support in PDF reports for visual clarity
-- Detailed error messages with context
-- Pass/fail summary statistics
+The correction engine is deliberately conservative and rule-based. It does not use generative AI to decide how message content should be changed, and corrected messages should always be reviewed before clinical or production use.
 
-**Security & Privacy**
-- User-provided API keys (session-only storage)
-- No credentials persisted to database
-- Encrypted Flask sessions
-- SSL verification enabled
-- Secure Gazelle API integration
+**Reporting and history**
+- Detailed results with categorised errors and warnings
+- PDF report export using ReportLab
+- Session-based results in local mode
+- Per-user validation history and statistics through Azure SQL in production
+
+![Authenticated HL7 validation dashboard showing API configuration, supported profiles, validation totals, filters, and the reports area](../../assets/images/projects/hl7-validator-dashboard.png)
+
+*The authenticated dashboard brings profile selection, validation status, search, filtering, and report history into one workspace.*
+
+## Supported Profiles
+
+The interface includes configured profiles for common patient administration, laboratory, clinical, and system messages, including:
+
+- `ADT^A01`, `ADT^A03`, `ADT^A04`, and `ADT^A08`
+- `ORU^R01`, `ORU^R03`, `OML^O21`, and `ORL^O22`
+- `REF^I12`, `RRI^R12`, `VXU^V04`, and `SIU^S12`
+- Generic acknowledgements
+
+Final profile availability depends on the connected Gazelle EVS instance and its configuration.
+
+![Supported HL7 v2 message profiles grouped into patient administration, laboratory, clinical, and system categories](../../assets/images/projects/hl7-validator-profiles.png)
+
+*Configured Healthlink profiles and the correction categories available across them.*
 
 ## Technical Implementation
 
-**Backend Architecture**
-- **Flask**: Python web framework (Python 3.12)
-- **Gazelle EVS API**: Industry-standard HL7 validation service
-- **Playwright**: Headless browser for PDF generation
-- **Session Management**: Encrypted user sessions for API key storage
+**Application architecture**
+- **Flask and Python 3.12** provide the web application and validation orchestration
+- **Gazelle EVS** performs standards-based message validation
+- **Tailwind CSS and Lucide icons** provide the responsive dashboard interface
+- **ReportLab** generates downloadable PDF reports
+- **Docker and Gunicorn** support repeatable deployment
 
-**Frontend Design**
-- **Bootstrap 5.3**: Modern, responsive UI framework
-- **JavaScript**: Interactive file upload and validation flows
-- **Drag-and-Drop**: User-friendly file upload interface
-- **Real-time Feedback**: Immediate validation status updates
+**Local and production modes**
+- Local mode supports development, demonstrations, and single-user validation without authentication
+- Production mode adds Microsoft Entra ID sign-in, per-user history, statistics, and Azure SQL persistence
+- Gazelle API credentials can be held in the local session or encrypted with Fernet in production storage
 
-**Auto-Correction Module**
-Custom Python module (`hl7_corrector.py`) implementing intelligent error correction:
-- XML structure validation and repair
-- HL7 code table conformance fixes
-- Field insertion for required empty elements
-- BOM and encoding issue resolution
+![Authenticated user profile showing validation statistics and encrypted Gazelle API-key management, with the email address masked](../../assets/images/projects/hl7-validator-user-profile.png)
 
-## Use Cases
+*The production profile combines user statistics with encrypted Gazelle API-key lifecycle management. The email address is masked for privacy.*
 
-**Development & Testing**
-- Validate HL7 v2 interfaces during development
-- Test message conformance before deployment
-- Identify integration issues early in development cycle
+**Security and data handling**
+- CSRF protection and server-side filesystem sessions
+- HTTP-only, same-site cookies, with secure cookies in production
+- Content Security Policy and additional response security headers
+- Request rate limiting, filename sanitisation, and upload restrictions
+- Parameterised database access and encrypted production API-key storage
 
-**Integration Support**
-- Troubleshoot live interface issues
-- Validate vendor-generated messages
-- Support implementation projects
+Uploaded messages may contain personal or clinical data. Operators must ensure that their use of the application and submission of messages to Gazelle EVS meet their organisation's privacy, retention, and data-processing requirements.
 
-**Training & Education**
-- Learn HL7 v2 message structure
-- Understand validation requirements
-- Explore Gazelle validation capabilities
+## Correction Workflow
 
-## Deployment Architecture
+1. The browser uploads each selected message to Flask.
+2. The application submits it to the configured Gazelle EVS service.
+3. Validation results are parsed and presented in the dashboard.
+4. If enabled and mandatory errors remain, supported correction rules are applied.
+5. The message is revalidated until it passes or no further supported correction can be made.
+6. The final report and corrected file are made available for review and download.
 
-- **Hosting**: Heroku cloud platform
-- **Buildpacks**: Custom Playwright + Python buildpacks
-- **Stack**: heroku-22 for compatibility
-- **Runtime**: Python 3.12
-- **Scalability**: Stateless design for horizontal scaling
+Batch files are processed sequentially to avoid overwhelming the external validation service while providing clear per-file progress.
 
-## Value Proposition
+![The application's four-step workflow: sign in, upload, validate, and download](../../assets/images/projects/hl7-validator-workflow.png)
 
-Reduces time spent troubleshooting HL7 v2 integration issues by:
-- Providing immediate validation feedback
-- Automatically correcting common errors
-- Generating professional documentation (PDF reports)
-- Eliminating need for local Gazelle installation
-- Supporting distributed teams with web access
+*The user journey keeps a technically complex process to four clear stages.*
 
-## Technical Highlights
+## Value
 
-- **API Integration**: Seamless Gazelle EVS REST API integration
-- **Error Handling**: Comprehensive validation error analysis
-- **PDF Generation**: Playwright-based browser rendering
-- **Session Security**: Encrypted session-based API key storage
-- **Modern UX**: Bootstrap 5.3 with drag-and-drop uploads
-- **Auto-Correction**: Intelligent HL7 v2 error fixing
+The application reduces the effort involved in HL7 v2 message-quality workflows by combining validation, explainable rule-based correction, revalidation, downloadable reports, and production-ready user history in one interface. It is designed for testing and message-quality work; it is not a medical device or a substitute for professional review.
 
-*Note: Internal development tool for HL7 v2 validation. Repository is private.*
+The [source repository](https://github.com/ddeveloper72/HL7_v2_Message_Validator-Auto-Correct) is publicly accessible. It does not currently include a standalone open-source licence, so public visibility should not be interpreted as granting reuse rights.
